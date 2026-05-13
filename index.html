@@ -40,7 +40,15 @@
     }
     .brand { display:flex; align-items:center; gap:14px; }
     .brand img { height: 48px; width: auto; }
-    .nav { display:flex; gap:22px; font-weight:700; color: var(--navy); font-size:.95rem; }
+    .nav { display:flex; gap:22px; font-weight:700; color: var(--navy); font-size:.95rem; align-items:center; }
+    .menu-group { position: relative; display: inline-block; }
+    .menu-drop {
+      position:absolute; top:100%; left:0; min-width:240px; background:#083791; color:#fff;
+      border-radius:14px; padding:10px 0; box-shadow:0 18px 38px rgba(8,34,74,.18); display:none;
+    }
+    .menu-group:hover .menu-drop { display:block; }
+    .menu-drop a { display:block; padding:10px 16px; }
+    .menu-drop a:hover { background: rgba(255,255,255,.12); }
     .cta {
       display:inline-flex; align-items:center; justify-content:center; padding:14px 24px; border-radius:999px;
       background: var(--orange); color:#fff; font-weight:800; box-shadow: var(--shadow); text-transform: uppercase; letter-spacing: .02em;
@@ -154,11 +162,16 @@
       </div>
       <nav class="nav">
         <a href="#who">WHO WE ARE</a>
-        <a href="#divisions">OUR DIVISIONS</a>
-        <a href="#commitment">OUR COMMITMENT</a>
-        <a href="#clients">OUR CLIENTS</a>
+        <div class="menu-group">
+          <a href="#divisions">OUR DIVISION</a>
+          <div class="menu-drop">
+            <a href="#division-solutions">BARCO SOLUTIONS</a>
+            <a href="#division-assist">BARCO ASSIST</a>
+            <a href="#division-hygiene">BARCO HYGIENE</a>
+            <a href="#division-tech">BARCO TECH</a>
+          </div>
+        </div>
       </nav>
-      <a class="cta" href="#contact">Contact us</a>
     </div>
   </header>
 
@@ -170,7 +183,7 @@
       </p>
       <div class="hero-actions">
         <a class="cta" href="#who">Find Out More</a>
-        <a class="cta alt" href="#contact">Contact Us</a>
+        <a class="cta alt" href="#clients">Our Clients</a>
       </div>
     </div>
   </section>
@@ -191,28 +204,28 @@
         We provide a full spectrum of building, renovation, and maintenance solutions designed to keep your property investment performing at its best.
       </p>
       <div class="divisions">
-        <article class="division">
+        <article class="division" id="division-solutions">
           <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/690866dbf6799f78db1ed13f.png" alt="Barco Solutions division">
           <div class="overlay">
             <h3>Barco Solutions</h3>
             <p>Building, renovation and maintenance support covering waterproofing, painting, flooring, inspections, project management, cleaning and landscaping.</p>
           </div>
         </article>
-        <article class="division">
+        <article class="division" id="division-assist">
           <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/690853745e5b74b26886f1ca.png" alt="Barco Assist division">
           <div class="overlay">
             <h3>Barco Assist</h3>
             <p>Support-focused division presentation aligned to the current group layout, with room for cleaner enquiry routing underneath.</p>
           </div>
         </article>
-        <article class="division">
+        <article class="division" id="division-hygiene">
           <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/6908537468dfc2a18da0f8c2.png" alt="Barco Hygiene division">
           <div class="overlay">
             <h3>Barco Hygiene</h3>
             <p>Cleaning and hygiene-focused positioning carried over from the live site while staying migration-ready for our backend flow.</p>
           </div>
         </article>
-        <article class="division">
+        <article class="division" id="division-tech">
           <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/6969fe604e42b9475f2816b7.png" alt="Barco Tech division">
           <div class="overlay">
             <h3>Barco Tech</h3>
