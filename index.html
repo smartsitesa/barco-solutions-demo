@@ -103,12 +103,24 @@
     }
     .why-card h3, .measure-card h3, .contact-card h3 { margin:0 0 10px; color: var(--navy); }
     .why-card p, .measure-card p, .contact-card p { margin:0; color: var(--muted); }
-    .clients-strip {
-      display:grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap:14px; margin-top:32px;
+    .clients-marquee {
+      position: relative;
+      overflow: hidden;
+      margin-top: 32px;
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    }
+    .clients-track {
+      display: flex;
+      width: max-content;
+      gap: 14px;
+      animation: logo-scroll 34s linear infinite;
     }
     .client-logo {
+      flex: 0 0 190px;
       background:#fff; border:1px solid var(--line); border-radius:20px; min-height:100px; display:grid; place-items:center; padding:16px;
     }
+    .client-logo img { max-height: 52px; width: auto; object-fit: contain; }
     .measure-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:18px; margin-top:32px; }
     .measure-card strong { display:block; font-size:2rem; color: var(--orange); margin-bottom:8px; }
     .contact-wrap {
@@ -116,16 +128,21 @@
       border-top: 1px solid var(--line);
     }
     .contact-grid { display:grid; grid-template-columns: 1.05fr .95fr; gap:24px; }
+    @keyframes logo-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(calc(-50% - 7px)); }
+    }
     .contact-card ul { margin:14px 0 0; padding-left: 18px; color: var(--muted); }
     footer { padding: 26px 0 44px; color: var(--muted); text-align:center; }
     @media (max-width: 1024px) {
-      .divisions, .why-grid, .clients-strip, .measure-grid, .commitment-grid, .contact-grid { grid-template-columns: 1fr 1fr; }
+      .divisions, .why-grid, .measure-grid, .commitment-grid, .contact-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 760px) {
       .nav { display:none; }
-      .divisions, .why-grid, .clients-strip, .measure-grid, .commitment-grid, .contact-grid { grid-template-columns: 1fr; }
+      .divisions, .why-grid, .measure-grid, .commitment-grid, .contact-grid { grid-template-columns: 1fr; }
       .hero { min-height: auto; }
       .hero-inner { padding: 72px 0; }
+      .client-logo { flex-basis: 150px; min-height: 82px; }
     }
   </style>
 </head>
@@ -251,13 +268,33 @@
   <section class="section" id="clients">
     <div class="container center">
       <h2 class="title">Our Clients</h2>
-      <div class="clients-strip">
-        <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c83deff08184a10efe.png" alt="Client logo"></div>
-        <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38536218a437bed11549.png" alt="Client logo"></div>
-        <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd39bb7f211916325b182e.png" alt="Client logo"></div>
-        <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c9c896344f3a4d6b72.png" alt="Client logo"></div>
-        <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c8dadd7f0345f41980.png" alt="Client logo"></div>
-        <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c89ed67b0480574eae.png" alt="Client logo"></div>
+      <div class="clients-marquee">
+        <div class="clients-track">
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c83deff08184a10efe.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38536218a437bed11549.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd39bb7f211916325b182e.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c9c896344f3a4d6b72.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c8dadd7f0345f41980.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c89ed67b0480574eae.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c86218a46f36d0ddf5.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd3854111a1d289beeef7c.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38537f211948745aad83.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c8111a1d7ae8eebb07.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd369cc896340d364d66a0.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38536218a46552d1154a.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c83deff08184a10efe.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38536218a437bed11549.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd39bb7f211916325b182e.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c9c896344f3a4d6b72.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c8dadd7f0345f41980.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c89ed67b0480574eae.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c86218a46f36d0ddf5.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd3854111a1d289beeef7c.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38537f211948745aad83.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c8111a1d7ae8eebb07.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd369cc896340d364d66a0.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38536218a46552d1154a.png" alt="Client logo"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -282,31 +319,6 @@
           <p>Under the hood we can still replace the backend with a cleaner quote, WhatsApp and follow-up system once the visual match is locked in.</p>
         </article>
       </div>
-    </div>
-  </section>
-
-  <section class="section contact-wrap" id="contact">
-    <div class="container contact-grid">
-      <article class="contact-card">
-        <h2 class="title" style="font-size:2.2rem; margin-bottom:10px;">Contact Us</h2>
-        <p>Office: 66A Section St, Paarden Eiland, Cape Town, 7405</p>
-        <p>Site: www.barcosolutions.co.za</p>
-        <ul>
-          <li>Use this section for a cleaner quote-first form</li>
-          <li>Add WhatsApp-first routing if they migrate to us</li>
-          <li>Replace hidden provider workflows with our own manageable backend</li>
-        </ul>
-      </article>
-      <article class="contact-card">
-        <h3>Migration-ready note</h3>
-        <p>
-          This version now follows the public Barco structure much more closely. Next we tighten spacing, proportions, and detail treatment even further, then connect a better backend flow for forms, WhatsApp, lead stages and reporting.
-        </p>
-        <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
-          <a class="cta" href="https://wa.me/27689023641?text=Hi%2C%20I%20want%20to%20see%20the%20Barco%20demo%20migration%20flow.">WhatsApp preview</a>
-          <a class="cta" style="background:var(--navy);" href="mailto:info@barcosolutions.co.za">Email</a>
-        </div>
-      </article>
     </div>
   </section>
 
