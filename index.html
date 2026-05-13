@@ -3,229 +3,315 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Barco Solutions | Property Maintenance, Renovation & Building Support</title>
-  <meta name="description" content="Professional building, renovation, maintenance, waterproofing, painting, flooring, inspections, project management, cleaning and landscaping support for properties and facilities." />
+  <title>Barco Solutions | From concept to completion</title>
+  <meta name="description" content="Barco Solutions demo rebuild closely matching the current public site structure, divisions, commitment, client strip, and contact sections, with a cleaner migration-ready foundation." />
   <style>
     :root {
-      --bg: #09111f;
-      --panel: #101b2e;
-      --panel-2: #17253d;
-      --text: #edf2ff;
-      --muted: #b6c1db;
-      --line: #283854;
-      --brand: #ff6b1a;
-      --brand-dark: #c85110;
-      --accent: #1f66d1;
-      --success: #86efac;
-      --shadow: 0 18px 38px rgba(0,0,0,.24);
+      --navy: #08224a;
+      --navy-2: #0d2d61;
+      --orange: #ff5e14;
+      --text: #10213d;
+      --muted: #5f6f87;
+      --line: #dce5f0;
+      --bg: #f5f8fc;
+      --white: #ffffff;
+      --shadow: 0 18px 38px rgba(8,34,74,.08);
       --radius: 22px;
+      --max: 1180px;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Inter, Arial, sans-serif;
-      background: linear-gradient(180deg, #07101c 0%, #0d1627 100%);
+      font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
+      background: var(--bg);
       line-height: 1.6;
     }
+    img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
-    .container { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
-    .nav {
-      position: sticky; top: 0; z-index: 10;
-      background: rgba(7,16,28,.84); backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(148,163,184,.12);
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,.95); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
     }
-    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 0; }
-    .brand { display:flex; align-items:center; gap:12px; font-weight:800; }
-    .badge {
-      width: 42px; height: 42px; border-radius: 14px;
-      background: linear-gradient(135deg, var(--brand), #ff9b61);
-      color:#fff; display:grid; place-items:center; font-weight:900; box-shadow: var(--shadow);
+    .topbar-inner {
+      display:flex; align-items:center; justify-content:space-between; gap:20px; padding: 16px 0;
     }
-    .nav-links { display:flex; gap:20px; color: var(--muted); font-size:.95rem; }
-    .btn, .btn-outline {
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:14px 20px; border-radius:999px; font-weight:700; transition:.2s ease;
+    .brand { display:flex; align-items:center; gap:14px; }
+    .brand img { height: 48px; width: auto; }
+    .nav { display:flex; gap:22px; font-weight:700; color: var(--navy); font-size:.95rem; }
+    .cta {
+      display:inline-flex; align-items:center; justify-content:center; padding:14px 22px; border-radius:999px;
+      background: var(--orange); color:#fff; font-weight:800; box-shadow: var(--shadow);
     }
-    .btn { background: linear-gradient(135deg, var(--brand), #ff8c49); color:#fff; box-shadow: var(--shadow); }
-    .btn-outline { border:1px solid rgba(184,199,231,.18); color: var(--text); }
-    .hero { padding: 76px 0 56px; }
-    .hero-grid { display:grid; grid-template-columns: 1.15fr .85fr; gap:28px; align-items:center; }
-    .eyebrow {
-      display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:999px;
-      background: rgba(255,107,26,.12); color: #ffb189; font-weight:700; font-size:.9rem; margin-bottom:18px;
+    .hero {
+      position: relative;
+      min-height: 78vh;
+      display:flex; align-items:center;
+      background:
+        linear-gradient(90deg, rgba(8,34,74,.82) 0%, rgba(8,34,74,.74) 38%, rgba(8,34,74,.42) 60%, rgba(8,34,74,.18) 100%),
+        url('https://images.leadconnectorhq.com/image/f_webp/q_80/r_1600/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/68da3e1c61cd2d6dd3b74880.png') center/cover no-repeat;
+      color: #fff;
     }
-    h1 { font-size: clamp(2.3rem, 5vw, 4.4rem); line-height:1.02; margin:0 0 18px; }
-    p.lead { color: var(--muted); font-size:1.06rem; max-width:720px; margin:0 0 24px; }
-    .hero-actions { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:22px; }
-    .hero-list { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; color: var(--muted); }
-    .card, .service, .step, .panel, .faq, .contact-box {
-      background: linear-gradient(180deg, rgba(16,27,46,.96), rgba(11,18,32,.96));
-      border:1px solid rgba(148,163,184,.13); border-radius: var(--radius); box-shadow: var(--shadow);
+    .hero-inner { padding: 92px 0 86px; max-width: 760px; }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+      line-height: 1.02;
+      margin: 0 0 18px;
+      text-transform: uppercase;
+      letter-spacing: .02em;
     }
-    .card { padding:26px; }
-    .stat-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:14px; margin-top:18px; }
-    .stat { padding:16px; border-radius:18px; background: rgba(31,102,209,.1); border: 1px solid rgba(31,102,209,.14); }
-    .stat strong { display:block; font-size:1.35rem; }
-    .section { padding: 22px 0 10px; }
-    .section-head { margin-bottom:24px; }
-    .section-head h2 { margin:0 0 8px; font-size: clamp(1.6rem, 3vw, 2.4rem); }
-    .section-head p { margin:0; color: var(--muted); max-width: 760px; }
-    .services { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:18px; }
-    .service, .step, .panel, .faq { padding:22px; }
-    .service h3, .step h3, .panel h3, .faq h3 { margin:0 0 10px; }
-    .service p, .step p, .panel p, .faq p { margin:0; color: var(--muted); }
-    .icon { width:44px; height:44px; border-radius:14px; display:grid; place-items:center; background: rgba(255,107,26,.12); color:#ffb189; margin-bottom:14px; }
-    .two-col { display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
-    .steps { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:18px; }
-    .step-no { width:36px; height:36px; border-radius:999px; display:grid; place-items:center; background: rgba(134,239,172,.12); color: var(--success); font-weight:800; margin-bottom:14px; }
-    .contact-box { padding:28px; display:grid; grid-template-columns: 1.2fr .8fr; gap:20px; align-items:center; margin: 36px 0 70px; }
-    ul.clean { list-style:none; padding:0; margin:16px 0 0; display:grid; gap:10px; }
-    ul.clean li { color: var(--muted); display:flex; gap:10px; align-items:flex-start; }
-    ul.clean li::before { content: '✓'; color: var(--success); font-weight:800; }
-    footer { padding: 0 0 42px; color: var(--muted); }
-    @media (max-width: 920px) {
-      .hero-grid, .services, .two-col, .steps, .contact-box { grid-template-columns: 1fr; }
-      .nav-links { display:none; }
-      .hero-list { grid-template-columns: 1fr; }
+    .hero p { font-size: 1.06rem; max-width: 690px; margin: 0 0 28px; color: rgba(255,255,255,.9); }
+    .hero-actions { display:flex; gap:14px; flex-wrap:wrap; }
+    .hero .cta.alt { background: transparent; border: 2px solid rgba(255,255,255,.72); }
+    .section { padding: 78px 0; }
+    .section h2.title {
+      margin: 0 0 14px; color: var(--navy); font-size: clamp(2rem, 4vw, 3.3rem); text-transform: uppercase;
+    }
+    .section p.intro { margin: 0 auto; max-width: 900px; color: var(--muted); font-size: 1.05rem; }
+    .center { text-align:center; }
+    .divisions {
+      display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; margin-top: 34px;
+    }
+    .division {
+      position: relative; overflow:hidden; border-radius: 26px; min-height: 340px; box-shadow: var(--shadow);
+      background: #0e2348;
+    }
+    .division img { width:100%; height:100%; object-fit:cover; }
+    .division .overlay {
+      position:absolute; inset:0; background: linear-gradient(180deg, rgba(8,34,74,.16) 10%, rgba(8,34,74,.88) 100%);
+      display:flex; flex-direction:column; justify-content:flex-end; padding: 24px;
+    }
+    .division h3 { margin:0 0 8px; color:#fff; font-size:1.45rem; text-transform:uppercase; }
+    .division p { margin:0; color: rgba(255,255,255,.88); font-size:.96rem; }
+    .commitment {
+      background: linear-gradient(180deg, #0a2754, #081f43);
+      color:#fff;
+    }
+    .commitment-grid { display:grid; grid-template-columns: .95fr 1.05fr; gap: 28px; align-items:center; }
+    .commitment-card {
+      background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius: 28px; padding: 28px;
+    }
+    .commitment h2.title { color:#fff; }
+    .commitment p.intro, .commitment p { color: rgba(255,255,255,.86); }
+    .why-grid {
+      display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:18px; margin-top:32px;
+    }
+    .why-card, .measure-card, .contact-card {
+      background: var(--white); border:1px solid var(--line); border-radius: 24px; padding: 24px; box-shadow: var(--shadow);
+    }
+    .why-card h3, .measure-card h3, .contact-card h3 { margin:0 0 10px; color: var(--navy); }
+    .why-card p, .measure-card p, .contact-card p { margin:0; color: var(--muted); }
+    .clients-strip {
+      display:grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap:14px; margin-top:32px;
+    }
+    .client-logo {
+      background:#fff; border:1px solid var(--line); border-radius:20px; min-height:100px; display:grid; place-items:center; padding:16px;
+    }
+    .measure-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:18px; margin-top:32px; }
+    .measure-card strong { display:block; font-size:2rem; color: var(--orange); margin-bottom:8px; }
+    .contact-wrap {
+      background: linear-gradient(180deg, #f7fafe, #eff5fb);
+      border-top: 1px solid var(--line);
+    }
+    .contact-grid { display:grid; grid-template-columns: 1.05fr .95fr; gap:24px; }
+    .contact-card ul { margin:14px 0 0; padding-left: 18px; color: var(--muted); }
+    footer { padding: 26px 0 44px; color: var(--muted); text-align:center; }
+    @media (max-width: 1024px) {
+      .divisions, .why-grid, .clients-strip, .measure-grid, .commitment-grid, .contact-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 760px) {
+      .nav { display:none; }
+      .divisions, .why-grid, .clients-strip, .measure-grid, .commitment-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .hero-inner { padding: 72px 0; }
     }
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="container nav-inner">
+  <header class="topbar">
+    <div class="container topbar-inner">
       <div class="brand">
-        <div class="badge">B</div>
-        <div>
-          <div>Barco Solutions</div>
-          <div style="color:var(--muted); font-size:.9rem;">Property maintenance, renovation & facilities support</div>
-        </div>
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/68da3c4e373f4e2e8e51dfae.png" alt="Barco logo">
       </div>
-      <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#why">Why Barco</a>
-        <a href="#process">How it works</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <a class="btn" href="#contact">Request a quote</a>
+      <nav class="nav">
+        <a href="#who">WHO WE ARE</a>
+        <a href="#divisions">OUR DIVISIONS</a>
+        <a href="#commitment">OUR COMMITMENT</a>
+        <a href="#clients">OUR CLIENTS</a>
+      </nav>
+      <a class="cta" href="#contact">Contact us</a>
     </div>
-  </nav>
+  </header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Built for properties that need reliable upkeep and practical results</div>
-          <h1>Reliable renovation, maintenance and property support — all in one place.</h1>
-          <p class="lead">
-            Barco Solutions provides building, renovation and maintenance services designed to keep homes, facilities and property investments in strong working condition. From waterproofing and painting to inspections, project coordination, cleaning and landscaping, we help clients manage the work with less stress and better visibility.
-          </p>
-          <div class="hero-actions">
-            <a class="btn" href="#contact">Get a quote</a>
-            <a class="btn-outline" href="#services">See services</a>
-          </div>
-          <div class="hero-list">
-            <div>✔ Waterproofing and repairs</div>
-            <div>✔ Painting and flooring</div>
-            <div>✔ Structural inspections</div>
-            <div>✔ Cleaning and landscaping</div>
-          </div>
-        </div>
-        <aside class="card">
-          <div style="color:var(--muted); font-size:.92rem;">Suggested improved conversion block</div>
-          <h3 style="font-size:1.5rem; margin:8px 0 10px;">Need property work handled properly?</h3>
-          <p style="color:var(--muted); margin:0;">Use a clearer quote-first funnel: collect the service needed, property type, urgency, and contact preference so the team can respond faster and qualify leads better.</p>
-          <div class="stat-grid">
-            <div class="stat"><strong>1 quote flow</strong><span>simple lead capture</span></div>
-            <div class="stat"><strong>WhatsApp-first</strong><span>faster follow-up</span></div>
-            <div class="stat"><strong>Lead stages</strong><span>new → quoted → booked</span></div>
-            <div class="stat"><strong>Monthly reports</strong><span>clear activity tracking</span></div>
-          </div>
-        </aside>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>From concept to completion, Barco ensures your property investment stands strong</h1>
+      <p>
+        A diversified holding company delivering integrated services across the construction, property, and facilities management sectors in South Africa.
+      </p>
+      <div class="hero-actions">
+        <a class="cta" href="#who">Find Out More</a>
+        <a class="cta alt" href="#contact">Contact Us</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-head">
-          <h2>Core service areas</h2>
-          <p>Based on public messaging from the current site, reorganised into clearer service categories that are easier for customers to understand quickly.</p>
-        </div>
-        <div class="services">
-          <article class="service"><div class="icon">🧱</div><h3>Building & renovation</h3><p>General building work, upgrades, project support and practical renovation solutions for residential and commercial properties.</p></article>
-          <article class="service"><div class="icon">💧</div><h3>Waterproofing & repairs</h3><p>Protect structures from leaks and moisture damage with maintenance work focused on long-term durability.</p></article>
-          <article class="service"><div class="icon">🎨</div><h3>Painting & finishes</h3><p>Refresh and maintain spaces with painting, finishing and improvement work that keeps the property looking professional.</p></article>
-          <article class="service"><div class="icon">🪵</div><h3>Flooring solutions</h3><p>Support for flooring updates and replacements that improve function, appearance and day-to-day durability.</p></article>
-          <article class="service"><div class="icon">🏗️</div><h3>Inspections & project oversight</h3><p>Structural inspections and project management support to help clients make decisions with more confidence.</p></article>
-          <article class="service"><div class="icon">🌿</div><h3>Cleaning & landscaping</h3><p>Keep external and internal spaces presentable, functional and better maintained over time.</p></article>
-        </div>
-      </div>
-    </section>
+  <section class="section center" id="who">
+    <div class="container">
+      <h2 class="title">Who We Are</h2>
+      <p class="intro">
+        BARCO is a diversified holding company delivering integrated services across the construction, property, and facilities management sectors in South Africa. Established in 2012, the group positions itself as a trusted partner for property investors, developers, and managers who want practical delivery, visibility, and long-term value.
+      </p>
+    </div>
+  </section>
 
-    <section class="section" id="why">
-      <div class="container two-col">
-        <article class="panel">
-          <h2 style="margin-top:0;">Suggested better backend flow</h2>
-          <p>This is how we would improve operations if Barco moved over to our system.</p>
-          <ul class="clean">
-            <li>Website hosted on our stack, easier to manage and update</li>
-            <li>Quote form routed into a simple lead pipeline</li>
-            <li>WhatsApp-first contact flow for faster handoff</li>
-            <li>Statuses like new, contacted, quoted, booked, follow-up</li>
-            <li>Manual + semi-automated follow-up without overcomplicating it</li>
-            <li>Monthly reporting on enquiries and conversion activity</li>
-          </ul>
+  <section class="section" id="divisions">
+    <div class="container center">
+      <h2 class="title">Our Divisions</h2>
+      <p class="intro">
+        A close rebuild of the current site structure, keeping the group/division model visible instead of flattening everything into a generic services page.
+      </p>
+      <div class="divisions">
+        <article class="division">
+          <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/690866dbf6799f78db1ed13f.png" alt="Barco Solutions division">
+          <div class="overlay">
+            <h3>Barco Solutions</h3>
+            <p>Building, renovation and maintenance support covering waterproofing, painting, flooring, inspections, project management, cleaning and landscaping.</p>
+          </div>
         </article>
-        <article class="panel">
-          <h2 style="margin-top:0;">What likely needs special migration care</h2>
-          <p>Because the current provider appears to be using a HighLevel/LeadConnector stack, these items likely need backend access to move exactly.</p>
-          <ul class="clean">
-            <li>Current WhatsApp provider connection and templates</li>
-            <li>Existing workflows and triggers</li>
-            <li>CRM contacts, pipelines and tags</li>
-            <li>Historic inbox data and automation logic</li>
-            <li>Any booking or quote automations behind the scenes</li>
-          </ul>
+        <article class="division">
+          <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/690853745e5b74b26886f1ca.png" alt="Barco Assist division">
+          <div class="overlay">
+            <h3>Barco Assist</h3>
+            <p>Support-focused division presentation carried over from the current site structure, ready for tighter conversion paths and clearer enquiry routing.</p>
+          </div>
+        </article>
+        <article class="division">
+          <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/6908537468dfc2a18da0f8c2.png" alt="Barco Hygiene division">
+          <div class="overlay">
+            <h3>Barco Hygiene</h3>
+            <p>Cleaning and hygiene-focused service positioning preserved from the current Barco setup, but easier to expand into quote and follow-up flows.</p>
+          </div>
+        </article>
+        <article class="division">
+          <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/6969fe604e42b9475f2816b7.png" alt="Barco Tech division">
+          <div class="overlay">
+            <h3>Barco Tech</h3>
+            <p>Technology/transparency-oriented division card that better matches the current site’s multi-division group presentation.</p>
+          </div>
         </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" id="process">
-      <div class="container">
-        <div class="section-head">
-          <h2>Recommended lead process</h2>
-          <p>A simpler, stronger process that is easier to support than a hidden provider-controlled backend.</p>
-        </div>
-        <div class="steps">
-          <article class="step"><div class="step-no">1</div><h3>Capture the job request</h3><p>Collect service type, property details, urgency, location and preferred contact method in one clean quote form.</p></article>
-          <article class="step"><div class="step-no">2</div><h3>Route it to WhatsApp + pipeline</h3><p>Push the enquiry into WhatsApp and a lead board so the team can respond quickly and track status clearly.</p></article>
-          <article class="step"><div class="step-no">3</div><h3>Follow up and report</h3><p>Handle hot leads quickly, track quoted work, and report monthly on enquiry and conversion activity.</p></article>
-        </div>
+  <section class="section commitment" id="commitment">
+    <div class="container commitment-grid">
+      <div>
+        <h2 class="title">Our Commitment</h2>
+        <p class="intro">Delivering lasting value through integrity, quality, innovation, and visible project support across the full property life cycle.</p>
       </div>
-    </section>
+      <div class="commitment-card">
+        <h3 style="margin-top:0; font-size:1.7rem;">Delivering lasting value</h3>
+        <p>
+          Across all services, BARCO GROUP stands for integrity, quality, and innovation. The group messaging is built around trust, project precision, technology-enabled visibility, and long-term value for partners and property owners.
+        </p>
+        <p style="margin-top:12px;">
+          This demo now mirrors that positioning much more closely while still giving us room to improve forms, lead routing, WhatsApp handoff, and backend operations later.
+        </p>
+      </div>
+    </div>
+  </section>
 
-    <section class="container" id="contact">
-      <div class="contact-box">
-        <div>
-          <h2 style="margin:0 0 10px;">Request a quote</h2>
-          <p style="margin:0; color:var(--muted);">This demo version uses a cleaner conversion goal: request a quote, describe the work needed, and move the lead into a trackable handoff flow.</p>
-          <ul class="clean">
-            <li>Choose the service needed</li>
-            <li>Add property/location details</li>
-            <li>Set urgency and contact preference</li>
-            <li>Move directly into quote follow-up</li>
-          </ul>
-        </div>
-        <div>
-          <a class="btn" style="width:100%; margin-bottom:12px;" href="https://wa.me/27689023641?text=Hi%2C%20I%20want%20to%20request%20a%20quote%20for%20property%20work.">Request quote on WhatsApp</a>
-          <a class="btn-outline" style="width:100%;" href="mailto:info@barcosolutions.co.za">Email Barco</a>
-        </div>
+  <section class="section" id="why">
+    <div class="container center">
+      <h2 class="title">Why Choose Barco?</h2>
+      <div class="why-grid">
+        <article class="why-card">
+          <h3>Integrated expertise</h3>
+          <p>Single-source support for construction, facilities management, specialist cleaning, and broader property life-cycle needs.</p>
+        </article>
+        <article class="why-card">
+          <h3>Compliance & trust</h3>
+          <p>Public messaging highlights NHBRC registration and hygiene-industry compliance positioning.</p>
+        </article>
+        <article class="why-card">
+          <h3>Technology & transparency</h3>
+          <p>The current site emphasizes real-time reporting, cost predictability and visibility on progress.</p>
+        </article>
+        <article class="why-card">
+          <h3>South African focus</h3>
+          <p>Positioned for investors, developers and property managers across South Africa.</p>
+        </article>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <section class="section" id="clients">
+    <div class="container center">
+      <h2 class="title">Our Clients</h2>
+      <div class="clients-strip">
+        <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c83deff08184a10efe.png" alt="Client logo"></div>
+        <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38536218a437bed11549.png" alt="Client logo"></div>
+        <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd39bb7f211916325b182e.png" alt="Client logo"></div>
+        <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c9c896344f3a4d6b72.png" alt="Client logo"></div>
+        <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c8dadd7f0345f41980.png" alt="Client logo"></div>
+        <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c89ed67b0480574eae.png" alt="Client logo"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="measure">
+    <div class="container center">
+      <h2 class="title">How Do We Measure</h2>
+      <div class="measure-grid">
+        <article class="measure-card">
+          <strong>2012</strong>
+          <h3>Established foundation</h3>
+          <p>Carry over the existing trust signal around longevity and market presence.</p>
+        </article>
+        <article class="measure-card">
+          <strong>4</strong>
+          <h3>Visible divisions</h3>
+          <p>Reflect the current group structure instead of collapsing it into a plain services page.</p>
+        </article>
+        <article class="measure-card">
+          <strong>1</strong>
+          <h3>Improved lead flow</h3>
+          <p>Under the hood we can still replace the backend with a cleaner quote, WhatsApp and follow-up system.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-wrap" id="contact">
+    <div class="container contact-grid">
+      <article class="contact-card">
+        <h2 class="title" style="font-size:2.2rem; margin-bottom:10px;">Contact Us</h2>
+        <p>Office: 66A Section St, Paarden Eiland, Cape Town, 7405</p>
+        <p>Site: www.barcosolutions.co.za</p>
+        <ul>
+          <li>Use this section for a cleaner quote-first form</li>
+          <li>Add WhatsApp-first routing if they migrate to us</li>
+          <li>Replace hidden provider workflows with our own manageable backend</li>
+        </ul>
+      </article>
+      <article class="contact-card">
+        <h3>Migration-ready note</h3>
+        <p>
+          This version now tracks much closer to the current public site in layout and tone. Next we can tighten the visual match even further, then connect a better backend flow for forms, WhatsApp, lead stages and reporting.
+        </p>
+        <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="cta" href="https://wa.me/27689023641?text=Hi%2C%20I%20want%20to%20see%20the%20Barco%20demo%20migration%20flow.">WhatsApp preview</a>
+          <a class="cta" style="background:var(--navy);" href="mailto:info@barcosolutions.co.za">Email</a>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <footer>
-    <div class="container">Barco Solutions demo rebuild — public-site recreation plus suggested improved backend flow.</div>
+    Copyright BARCO SOLUTIONS 2025. Demo rebuild aligned more closely to the live public site structure.
   </footer>
 </body>
 </html>
