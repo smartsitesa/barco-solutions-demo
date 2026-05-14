@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barco Solutions | From concept to completion</title>
+  <meta name="description" content="Barco Solutions demo rebuild closely matching the current public site structure, divisions, commitment, client strip, and contact sections, with a cleaner migration-ready foundation." />
+  <style>
+    :root {
+      --navy: #08224a;
+      --navy-2: #0d2d61;
+      --orange: #ff5e14;
+      --text: #10213d;
+      --muted: #5f6f87;
+      --line: #dce5f0;
+      --bg: #f5f8fc;
+      --white: #ffffff;
+      --shadow: 0 18px 38px rgba(8,34,74,.08);
+      --radius: 22px;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Century Gothic", "Montserrat", Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,.95); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner {
+      display:flex; align-items:center; justify-content:space-between; gap:20px; padding: 16px 0;
+    }
+    .brand { display:flex; align-items:center; gap:14px; }
+    .brand img { height: 48px; width: auto; }
+    .nav { display:flex; gap:22px; font-weight:700; color: var(--navy); font-size:.95rem; align-items:center; }
+    .menu-group { position: relative; display: inline-block; }
+    .menu-drop {
+      position:absolute; top:100%; left:0; min-width:240px; background:#083791; color:#fff;
+      border-radius:14px; padding:10px 0; box-shadow:0 18px 38px rgba(8,34,74,.18); display:none;
+    }
+    .menu-group:hover .menu-drop { display:block; }
+    .menu-drop a { display:block; padding:10px 16px; }
+    .menu-drop a:hover { background: rgba(255,255,255,.12); }
+    .cta {
+      display:inline-flex; align-items:center; justify-content:center; padding:14px 24px; border-radius:999px;
+      background: var(--orange); color:#fff; font-weight:800; box-shadow: var(--shadow); text-transform: uppercase; letter-spacing: .02em;
+    }
+    .hero {
+      position: relative;
+      min-height: 78vh;
+      display:flex; align-items:center;
+      background:
+        linear-gradient(90deg, rgba(8,34,74,.88) 0%, rgba(8,34,74,.78) 34%, rgba(8,34,74,.48) 58%, rgba(8,34,74,.2) 100%),
+        url('https://images.leadconnectorhq.com/image/f_webp/q_80/r_1600/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/68da3e1c61cd2d6dd3b74880.png') center/cover no-repeat;
+      color: #fff;
+    }
+    .hero-inner { padding: 92px 0 86px; max-width: 760px; }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+      line-height: 1.02;
+      margin: 0 0 18px;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+    .hero p { font-size: 1.06rem; max-width: 690px; margin: 0 0 28px; color: rgba(255,255,255,.9); }
+    .hero-actions { display:flex; gap:14px; flex-wrap:wrap; }
+    .hero .cta.alt { background: transparent; border: 2px solid rgba(255,255,255,.72); }
+    .section { padding: 78px 0; }
+    .section h2.title {
+      margin: 0 0 14px; color: var(--navy); font-size: clamp(2rem, 4vw, 3.3rem); text-transform: uppercase;
+    }
+    .section p.intro { margin: 0 auto; max-width: 900px; color: var(--muted); font-size: 1.05rem; }
+    .center { text-align:center; }
+    .divisions {
+      display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; margin-top: 34px;
+    }
+    .division {
+      position: relative; overflow:hidden; border-radius: 26px; min-height: 340px; box-shadow: var(--shadow);
+      background: #0e2348;
+    }
+    .division img { width:100%; height:100%; object-fit:cover; }
+    .division .overlay {
+      position:absolute; inset:0; background: linear-gradient(180deg, rgba(8,34,74,.16) 10%, rgba(8,34,74,.88) 100%);
+      display:flex; flex-direction:column; justify-content:flex-end; padding: 24px;
+    }
+    .division h3 { margin:0 0 8px; color:#fff; font-size:1.45rem; text-transform:uppercase; }
+    .division p { margin:0; color: rgba(255,255,255,.88); font-size:.96rem; }
+    .commitment {
+      background: linear-gradient(180deg, #0a2754, #081f43);
+      color:#fff;
+    }
+    .commitment-grid { display:grid; grid-template-columns: .95fr 1.05fr; gap: 28px; align-items:center; }
+    .commitment-card {
+      background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius: 28px; padding: 28px;
+    }
+    .commitment h2.title { color:#fff; }
+    .commitment p.intro, .commitment p { color: rgba(255,255,255,.86); }
+    .why-grid {
+      display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:18px; margin-top:32px;
+    }
+    .why-card, .measure-card, .contact-card {
+      background: var(--white); border:1px solid var(--line); border-radius: 24px; padding: 24px; box-shadow: var(--shadow);
+    }
+    .why-card h3, .measure-card h3, .contact-card h3 { margin:0 0 10px; color: var(--navy); }
+    .why-card p, .measure-card p, .contact-card p { margin:0; color: var(--muted); }
+    .clients-marquee {
+      position: relative;
+      overflow: hidden;
+      margin-top: 32px;
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    }
+    .clients-track {
+      display: flex;
+      width: max-content;
+      gap: 14px;
+      animation: logo-scroll 34s linear infinite;
+    }
+    .client-logo {
+      flex: 0 0 190px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:20px;
+      min-height:100px;
+      display:grid;
+      place-items:center;
+      padding:16px;
+      overflow:hidden;
+    }
+    .client-logo img {
+      max-height:52px;
+      width:auto;
+      max-width:100%;
+      object-fit:contain;
+      display:block;
+    }
+    .measure-grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:18px; margin-top:32px; }
+    .measure-card strong { display:block; font-size:2rem; color: var(--orange); margin-bottom:8px; }
+    .contact-wrap {
+      background: linear-gradient(180deg, #f7fafe, #eff5fb);
+      border-top: 1px solid var(--line);
+    }
+    .contact-grid { display:grid; grid-template-columns: 1.05fr .95fr; gap:24px; }
+    @keyframes logo-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(calc(-50% - 7px)); }
+    }
+    .contact-card ul { margin:14px 0 0; padding-left: 18px; color: var(--muted); }
+    footer { padding: 26px 0 44px; color: var(--muted); text-align:center; }
+    @media (max-width: 1024px) {
+      .divisions, .why-grid, .measure-grid, .commitment-grid, .contact-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 760px) {
+      .nav { display:none; }
+      .divisions, .why-grid, .measure-grid, .commitment-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .hero-inner { padding: 72px 0; }
+      .client-logo { flex-basis: 150px; min-height:82px; padding:14px; }
+      .client-logo img { max-height:44px; width:auto; max-width:100%; }
+    }
+
+
+
+    /* Verilead-style contact widget + guided assistant demo */
+    .aiFab{position:fixed;right:22px;bottom:22px;z-index:80;width:72px;height:72px;border:0;border-radius:50%;background:#2ecc35;color:#fff;box-shadow:0 12px 34px rgba(0,0,0,.22);cursor:pointer;display:grid;place-items:center}.aiFab svg{width:34px;height:34px}.aiFab::after{content:'1';position:absolute;right:2px;top:1px;width:22px;height:22px;border-radius:50%;background:#c60000;color:#fff;display:grid;place-items:center;font:800 12px Arial,sans-serif;border:2px solid #fff}.aiFab span{display:none}.aiPanel{position:fixed;right:22px;bottom:104px;z-index:90;width:min(370px,calc(100vw - 28px));overflow:hidden;border-radius:19px;background:#f4f5f7;box-shadow:0 18px 60px rgba(0,0,0,.24);color:#111;font-family:Arial,Helvetica,sans-serif}.aiHead{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:17px 18px;background:#2ecc35;color:#fff;border-radius:19px 19px 0 0}.aiHeadMain{display:flex;gap:12px;align-items:center}.aiLogo{width:42px;height:42px;border-radius:50%;background:#fff;display:grid;place-items:center;color:#083791;font-weight:900;font-size:24px;box-shadow:0 2px 8px rgba(0,0,0,.12)}.aiHead b{display:block;font-size:18px;line-height:1.1}.aiHead small{display:block;font-size:14px;color:rgba(255,255,255,.94);margin-top:4px}.aiHead button{border:0;background:transparent;color:#fff;font-size:28px;line-height:1;cursor:pointer}.aiBack{font-size:24px!important}.aiBody{padding:16px;display:grid;gap:12px}.aiBody p{margin:0 0 8px;color:#343b44;font-size:14px}.contactOption{display:flex;align-items:center;gap:14px;width:100%;border:1px solid #edf0f3;border-radius:14px;background:#fff;color:#111;padding:14px 15px;font-weight:800;font-size:15px;text-align:left;box-shadow:0 4px 12px rgba(0,0,0,.05);cursor:pointer;text-decoration:none;font-family:inherit}.contactOption:hover{transform:translateY(-1px);box-shadow:0 7px 16px rgba(0,0,0,.08)}.contactIcon{width:38px;height:38px;border-radius:11px;background:#eef2f4;display:grid;place-items:center;color:#2ecc35;flex:0 0 38px}.contactIcon.whatsapp{background:#25d366;color:#fff;border-radius:50%}.contactIcon svg{width:21px;height:21px}.aiFooter{display:flex;align-items:center;gap:6px;justify-content:center;color:#7d8790;font-size:12px;padding:12px 0 2px;border-top:1px solid #e9ecef}.aiFooter a{color:#2ecc35;font-weight:700}.aiField{display:grid;gap:7px}.aiField label{font-size:13px;font-weight:800;color:#20262d}.aiInput,.aiTextarea,.aiSelect{width:100%;border:1px solid #d6dbe1;border-radius:9px;background:#fff;padding:13px 14px;font:inherit;color:#111}.aiTextarea{min-height:90px;resize:vertical}.aiSubmit{border:0;border-radius:9px;background:#2ecc35;color:#fff;font-weight:900;padding:14px 16px;font:inherit;cursor:pointer;box-shadow:0 4px 10px rgba(46,204,53,.18)}.aiNotice{padding:12px 14px;border-radius:10px;background:#fff8df;border:1px solid #ecd878;color:#5c4b00;font-size:13px}.aiChoiceGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.aiChoiceGrid button{border:1px solid #dfe4ea;border-radius:10px;background:#fff;padding:10px;font-weight:800;cursor:pointer}.aiChoiceGrid button.selected{border-color:#2ecc35;background:#eaffeb;color:#16821d}.aiSummary{white-space:pre-wrap;margin:0;padding:12px;border-radius:12px;background:#fff;color:#28323d;font-size:13px;border:1px solid #edf0f3}.aiActions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.aiActions a,.aiActions button{border:0;border-radius:9px;padding:12px;background:#2ecc35;color:#fff;font-weight:900;text-align:center;text-decoration:none;cursor:pointer}.aiActions button{background:#eef2f4;color:#27313b}
+.aiChat{display:grid;gap:10px;max-height:390px;overflow:auto;padding-right:2px}.chatMsg{max-width:86%;padding:10px 12px;border-radius:15px;font-size:14px;line-height:1.35}.chatMsg.bot{background:#fff;color:#1e2832;border:1px solid #e7ebef;border-top-left-radius:5px}.chatMsg.user{background:#2ecc35;color:#fff;justify-self:end;border-top-right-radius:5px}.chatChoices{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 4px}.chatChoices button{border:1px solid #dfe4ea;background:#fff;color:#1d2730;border-radius:999px;padding:9px 11px;font-weight:800;cursor:pointer;font-size:12px;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease,background .16s ease,color .16s ease}.chatChoices button:hover,.chatChoices button:focus-visible{border-color:#2ecc35;background:#eaffeb;color:#137018;transform:translateY(-2px);box-shadow:0 8px 18px rgba(46,204,53,.18);outline:none}.chatChoices button:active{transform:translateY(0);box-shadow:0 3px 8px rgba(46,204,53,.16)}.chatInputRow{display:flex;gap:8px;margin-top:4px}.chatInputRow input{flex:1;border:1px solid #d6dbe1;border-radius:999px;background:#fff;padding:12px 14px;font:inherit}.chatInputRow button{border:0;border-radius:999px;background:#2ecc35;color:#fff;font-weight:900;padding:0 16px;cursor:pointer}.typing{display:inline-flex;gap:4px;align-items:center}.typing i{width:6px;height:6px;border-radius:50%;background:#9aa5af;animation:typingBlink 1s infinite alternate}.typing i:nth-child(2){animation-delay:.18s}.typing i:nth-child(3){animation-delay:.36s}@keyframes typingBlink{from{opacity:.25;transform:translateY(0)}to{opacity:1;transform:translateY(-2px)}}
+@media(max-width:560px){.aiFab{right:14px;bottom:14px}.aiPanel{right:14px;bottom:96px;width:calc(100vw - 28px)}.aiChoiceGrid,.aiActions{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/68da3c4e373f4e2e8e51dfae.png" alt="Barco logo">
+      </div>
+      <nav class="nav">
+        <a href="#who">WHO WE ARE</a>
+        <div class="menu-group">
+          <a href="#divisions">OUR DIVISION</a>
+          <div class="menu-drop">
+            <a href="#division-solutions">BARCO SOLUTIONS</a>
+            <a href="#division-assist">BARCO ASSIST</a>
+            <a href="#division-hygiene">BARCO HYGIENE</a>
+            <a href="#division-tech">BARCO TECH</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>From concept to completion, Barco ensures your property investment stands strong</h1>
+      <p>
+        A diversified holding company delivering integrated services across the construction, property, and facilities management sectors in South Africa.
+      </p>
+      <div class="hero-actions">
+        <a class="cta" href="#who">Find Out More</a>
+        <a class="cta alt" href="#clients">Our Clients</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section center" id="who">
+    <div class="container">
+      <h2 class="title">Who We Are</h2>
+      <p class="intro">
+        BARCO is a diversified holding company delivering integrated services across the construction, property, and facilities management sectors in South Africa. Established in 2012, the group positions itself as a trusted partner for property investors, developers, and managers who want practical delivery, visibility, and long-term value.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="divisions">
+    <div class="container center">
+      <h2 class="title">Our Divisions</h2>
+      <p class="intro">
+        We provide a full spectrum of building, renovation, and maintenance solutions designed to keep your property investment performing at its best.
+      </p>
+      <div class="divisions">
+        <article class="division" id="division-solutions">
+          <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/690866dbf6799f78db1ed13f.png" alt="Barco Solutions division">
+          <div class="overlay">
+            <h3>Barco Solutions</h3>
+            <p>Building, renovation and maintenance support covering waterproofing, painting, flooring, inspections, project management, cleaning and landscaping.</p>
+          </div>
+        </article>
+        <article class="division" id="division-assist">
+          <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/690853745e5b74b26886f1ca.png" alt="Barco Assist division">
+          <div class="overlay">
+            <h3>Barco Assist</h3>
+            <p>Support-focused division presentation aligned to the current group layout, with room for cleaner enquiry routing underneath.</p>
+          </div>
+        </article>
+        <article class="division" id="division-hygiene">
+          <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/6908537468dfc2a18da0f8c2.png" alt="Barco Hygiene division">
+          <div class="overlay">
+            <h3>Barco Hygiene</h3>
+            <p>Cleaning and hygiene-focused positioning carried over from the live site while staying migration-ready for our backend flow.</p>
+          </div>
+        </article>
+        <article class="division" id="division-tech">
+          <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/O8hTDXiQqqZLK5K00jLr/media/6969fe604e42b9475f2816b7.png" alt="Barco Tech division">
+          <div class="overlay">
+            <h3>Barco Tech</h3>
+            <p>Technology and visibility positioning kept in line with the current Barco group presentation and reporting-focused messaging.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section commitment" id="commitment">
+    <div class="container commitment-grid">
+      <div>
+        <h2 class="title">Our Commitment</h2>
+        <p class="intro">Delivering lasting value through integrity, quality, innovation, and visible project support across the full property life cycle.</p>
+      </div>
+      <div class="commitment-card">
+        <h3 style="margin-top:0; font-size:1.7rem;">Delivering lasting value</h3>
+        <p>
+          Across all services, BARCO GROUP stands for integrity, quality, and innovation. The group messaging is built around trust, project precision, technology-enabled visibility, and long-term value for partners and property owners.
+        </p>
+        <p style="margin-top:12px;">
+          This demo now mirrors that positioning much more closely while still giving us room to improve forms, lead routing, WhatsApp handoff, and backend operations later.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="why">
+    <div class="container center">
+      <h2 class="title">Why Choose Barco?</h2>
+      <div class="why-grid">
+        <article class="why-card">
+          <h3>Integrated expertise</h3>
+          <p>Single-source support for construction, facilities management, specialist cleaning, and broader property life-cycle needs.</p>
+        </article>
+        <article class="why-card">
+          <h3>Compliance & trust</h3>
+          <p>Public messaging highlights NHBRC registration and hygiene-industry compliance positioning.</p>
+        </article>
+        <article class="why-card">
+          <h3>Technology & transparency</h3>
+          <p>The current site emphasizes real-time reporting, cost predictability and visibility on progress.</p>
+        </article>
+        <article class="why-card">
+          <h3>South African focus</h3>
+          <p>Positioned for investors, developers and property managers across South Africa.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="clients">
+    <div class="container center">
+      <h2 class="title">Our Clients</h2>
+      <div class="clients-marquee">
+        <div class="clients-track">
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c83deff08184a10efe.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38536218a437bed11549.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd39bb7f211916325b182e.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c9c896344f3a4d6b72.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c8dadd7f0345f41980.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c89ed67b0480574eae.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c86218a46f36d0ddf5.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd3854111a1d289beeef7c.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38537f211948745aad83.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c8111a1d7ae8eebb07.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd369cc896340d364d66a0.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38536218a46552d1154a.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c83deff08184a10efe.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38536218a437bed11549.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd39bb7f211916325b182e.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c9c896344f3a4d6b72.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c8dadd7f0345f41980.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c89ed67b0480574eae.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c86218a46f36d0ddf5.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd3854111a1d289beeef7c.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38537f211948745aad83.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd36c8111a1d7ae8eebb07.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd369cc896340d364d66a0.png" alt="Client logo"></div>
+          <div class="client-logo"><img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://storage.googleapis.com/msgsndr/O8hTDXiQqqZLK5K00jLr/media/68dd38536218a46552d1154a.png" alt="Client logo"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="measure">
+    <div class="container center">
+      <h2 class="title">How Do We Measure</h2>
+      <div class="measure-grid">
+        <article class="measure-card">
+          <strong>2012</strong>
+          <h3>Established foundation</h3>
+          <p>Carry over the existing trust signal around longevity and market presence.</p>
+        </article>
+        <article class="measure-card">
+          <strong>4</strong>
+          <h3>Visible divisions</h3>
+          <p>Reflect the current group structure instead of collapsing it into a plain services page.</p>
+        </article>
+        <article class="measure-card">
+          <strong>1</strong>
+          <h3>Improved lead flow</h3>
+          <p>Under the hood we can still replace the backend with a cleaner quote, WhatsApp and follow-up system once the visual match is locked in.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Copyright BARCO SOLUTIONS 2025. Demo rebuild aligned more closely to the live public site structure.
+  </footer>
+
+
+
+  <script src="bot-config.js"></script>
+  <script src="bot-widget.js"></script>
+</body>
+</html>
