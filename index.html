@@ -363,64 +363,7 @@
 
 
 
-  <button class="aiFab" id="aiFab" aria-label="Open Barco contact widget">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/><path d="M8 9h8"/><path d="M8 13h6"/></svg>
-    <span>AI Help</span>
-  </button>
-  <div class="aiPanel" id="aiPanel" role="dialog" aria-label="Barco Solutions contact widget" hidden>
-    <div class="aiHead">
-      <button class="aiBack" id="aiBack" aria-label="Back" hidden>‹</button>
-      <div class="aiHeadMain"><div class="aiLogo">B</div><span><b id="aiTitle">Barco Solutions</b><small id="aiSubtitle">How can we help you today?</small></span></div>
-      <button id="aiClose" aria-label="Close assistant">×</button>
-    </div>
-    <div class="aiBody" id="aiBody"></div>
-  </div>
-  <script>
-    (function(){
-      const state={service:'',needs:[],details:'',name:'',email:''};
-      const services=['Barco Solutions','Barco Assist','Barco Hygiene','Barco Tech','Not sure'];
-      const needs=['Waterproofing','Painting / flooring','Structural inspection','Project management','Cleaning / landscaping','Facilities maintenance','Technology reporting','General quote'];
-      const generic='Hi Barco Solutions, I would like to enquire about building, renovation, maintenance or facilities services.';
-      const body=document.getElementById('aiBody'), panel=document.getElementById('aiPanel'), title=document.getElementById('aiTitle'), subtitle=document.getElementById('aiSubtitle'), back=document.getElementById('aiBack');
-      let view='menu';
-      const esc=(v)=>String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-      const summary=()=>`Hi Barco Solutions, I need help with a property/project enquiry.\nDivision: ${state.service||'Not selected'}\nNeeds: ${state.needs.join(', ')||'Not selected'}\nProject details: ${state.details||'Not supplied'}\nName: ${state.name||'Not supplied'}\nEmail: ${state.email||'Not supplied'}`;
-      function setHead(t,s,showBack=true){title.textContent=t; subtitle.textContent=s||''; back.hidden=!showBack;}
-      function footer(){return '<div class="aiFooter"><span>🔒</span> Your data is secure. <a href="#">Privacy Policy</a></div>'}
-      function menu(){setHead('Barco Solutions','How can we help you today?',false);body.innerHTML=`<button class="contactOption" data-view="whatsapp"><span class="contactIcon whatsapp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0 11.9 11.9 0 0 0 1.8 17.9L0 24l6.3-1.7A11.9 11.9 0 0 0 24 12.1a11.8 11.8 0 0 0-3.5-8.6ZM12.1 22a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12.1 22Z"/></svg></span>WhatsApp</button><button class="contactOption" data-view="call"><span class="contactIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.63 2.6a2 2 0 0 1-.45 2.11L8 9.7a16 16 0 0 0 6.3 6.3l1.27-1.27a2 2 0 0 1 2.11-.45c.83.3 1.7.51 2.6.63A2 2 0 0 1 22 16.92Z"/></svg></span>Call</button><button class="contactOption" data-view="email"><span class="contactIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="m22 6-10 7L2 6"/></svg></span>Email</button><button class="contactOption" data-view="guide"><span class="contactIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span>Barco Bot</button>${footer()}`; body.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>render(b.dataset.view));}
-      function contact(kind){setHead(kind==='email'?'Send an Email':kind==='call'?'Start your Call':'Start WhatsApp Chat',kind==='email'?'Please fill in your details to send an email.':kind==='call'?'Please fill in your details to start a call.':'Please fill in your details to start a chat.'); const fields=kind==='email'?'<div class="aiField"><label>Your Name</label><input class="aiInput" id="cName" placeholder="Enter your name"></div><div class="aiField"><label>Email Address</label><input class="aiInput" id="cEmail" placeholder="Enter your email address"></div>':''; body.innerHTML=`<p>${kind==='email'?'Please fill in your details to send an email.':kind==='call'?'Please fill in your details to start a call.':'Please fill in your details to start a chat.'}</p>${fields}<div class="aiField"><label>Message</label><textarea class="aiTextarea" id="cMsg" placeholder="How can we help?">${kind==='whatsapp'?generic:''}</textarea></div><button class="aiSubmit" id="cSubmit">${kind==='email'?'Send Email':kind==='call'?'Start Call':'Start Chat'}</button><div id="cNotice"></div>${footer()}`; document.getElementById('cSubmit').onclick=()=>{const msg=document.getElementById('cMsg').value.trim(); const name=document.getElementById('cName')?.value.trim(); const email=document.getElementById('cEmail')?.value.trim(); if(kind==='email' && !name){document.getElementById('cNotice').innerHTML='<div class="aiNotice">Please enter your name.</div>';return} if(kind==='email'){location.href='mailto:?subject='+encodeURIComponent('Barco Solutions enquiry')+'&body='+encodeURIComponent(`Name: ${name}\nEmail: ${email||'Not supplied'}\n\n${msg||generic}`)} else if(kind==='call'){location.href='#contact'} else {window.open('https://wa.me/?text='+encodeURIComponent(msg||generic),'_blank','noreferrer')}}}
-      function guide(){
-        setHead('Barco Bot','Parameter-based assistant');
-        const botConfig={
-          businessName:'Barco Solutions',
-          whatsappNumber:'',
-          fallback:'I am not sure about that. Do you want to speak to an agent?',
-          parameters:[
-            {keywords:['hello','hi','hey','good morning','good afternoon','good evening'],reply:'Hello 👋 How can I assist you with Barco Solutions?'},
-            {keywords:['waterproofing','leak','roof leak','damp'],reply:'Yes, Barco can help with waterproofing and leak-related building work. Please send your name, location, and what area is leaking.'},
-            {keywords:['painting','paint'],reply:'Yes, Barco can assist with painting work. Please share the property type, area/rooms, location, and when you need it done.'},
-            {keywords:['flooring','floor','floors'],reply:'Yes, Barco can assist with flooring-related enquiries. Please share the floor type, size/area, and location.'},
-            {keywords:['maintenance','repair','fix','facilities'],reply:'Yes, Barco can help with maintenance and facilities support. Please send your name, location, and a short description of the issue.'},
-            {keywords:['inspection','structural','crack','assessment'],reply:'Yes, Barco can assist with inspections and assessments. Please share photos if available, your location, and the concern you want checked.'},
-            {keywords:['project management','project','renovation','building','construction'],reply:'Yes, Barco can assist with building, renovation, and project management enquiries. Please share the project type, location, and timeline.'},
-            {keywords:['cleaning','hygiene','landscaping','garden'],reply:'Yes, Barco can help route cleaning, hygiene, landscaping, and site-care enquiries. Please send your location and what service you need.'},
-            {keywords:['barco tech','tech','reporting','technology'],reply:'Yes, Barco Tech can assist with technology and reporting visibility. Please describe what you want tracked or reported.'},
-            {keywords:['quote','price','cost','quotation'],reply:'I can help prepare a quote request. Please send your name, contact number, location, and a short description of the work needed.'}
-          ]
-        };
-        const messages=[];
-        function waUrl(text){return 'https://wa.me/'+(botConfig.whatsappNumber||'')+'?text='+encodeURIComponent('Hi Barco Solutions, I need help with: '+text)}
-        function escMsg(v){return String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-        function add(type,text,extra=''){messages.push({type,text,extra}); draw();}
-        function draw(){body.innerHTML='<div class="aiChat">'+messages.map(m=>`<div class="chatMsg ${m.type}">${escMsg(m.text)}${m.extra||''}</div>`).join('')+'</div><div class="chatInputRow"><input id="botInput" placeholder="Type your message..."><button id="botSend">Send</button></div>'+footer(); const chat=body.querySelector('.aiChat'); chat.scrollTop=chat.scrollHeight; const inp=document.getElementById('botInput'); const send=document.getElementById('botSend'); send.onclick=submit; inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();submit()}}; setTimeout(()=>inp.focus(),20)}
-        function findReply(text){const t=text.toLowerCase(); for(const p of botConfig.parameters){if(p.keywords.some(k=>t.includes(k))) return p.reply} return null}
-        function submit(){const inp=document.getElementById('botInput'); const text=inp.value.trim(); if(!text)return; add('user',text); const reply=findReply(text); if(reply){setTimeout(()=>add('bot',reply),250)}else{const link=`<br><br><a target="_blank" rel="noreferrer" style="color:#0b7d16;font-weight:900" href="${waUrl(text)}">Speak to an agent on WhatsApp</a>`; setTimeout(()=>add('bot',botConfig.fallback,link),250)}}
-        add('bot','Hello 👋 How can I assist you with Barco Solutions?');
-      }
-      function render(v){view=v;if(v==='menu')menu();if(v==='email'||v==='call'||v==='whatsapp')contact(v);if(v==='guide')guide();}
-      document.getElementById('aiFab').onclick=()=>{panel.hidden=false;render('menu')};document.getElementById('aiClose').onclick=()=>{panel.hidden=true};back.onclick=()=>render('menu');
-    })();
-  </script>
-
+  <script src="bot-config.js"></script>
+  <script src="bot-widget.js"></script>
 </body>
 </html>
