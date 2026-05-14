@@ -12,8 +12,8 @@
   <header>
     <div class="wrap hero">
       <div class="top"><div class="brand"><div class="logo">B</div><span>Barco Solutions × SmartSite AI</span></div><a class="pill" href="./">← Back to site</a></div>
-      <h1>Backend-powered chatbot demo</h1>
-      <p>This shows the next-level version: Google-authenticated admin, bot parameters, allowed topics, business knowledge, and WhatsApp handoff when the assistant cannot safely help.</p>
+      <h1>Parameter-based chatbot demo</h1>
+      <p>This shows the practical version: Google-authenticated admin, editable bot parameters, fixed replies, and WhatsApp handoff when the bot does not understand.</p>
     </div>
   </header>
 
@@ -21,35 +21,35 @@
     <div class="grid">
       <section class="card admin">
         <h2>Admin settings preview</h2>
-        <div class="status ok">Google login ready in backend: only approved admin emails can edit bots.</div>
+        <div class="status ok">Google login ready in backend: only approved admin emails can edit bot parameters.</div>
         <label>Business name <input id="business" value="Barco Solutions"></label>
-        <label>Allowed topics <textarea id="topics">building, renovation, maintenance, waterproofing, painting, flooring, inspections, project management, cleaning, landscaping, facilities support, Barco divisions</textarea></label>
-        <label>Knowledge / parameters <textarea id="knowledge">Barco Solutions helps with building, renovation, maintenance, waterproofing, painting, flooring, structural inspections, project management, cleaning, landscaping, Barco Assist, Barco Hygiene and Barco Tech. Keep replies short and collect name, location and job details.</textarea></label>
+        <label>Parameters / keywords <textarea id="topics">building, renovation, maintenance, waterproofing, painting, flooring, inspections, project management, cleaning, landscaping, facilities support, Barco divisions</textarea></label>
+        <label>Business notes <textarea id="knowledge">Barco Solutions helps with building, renovation, maintenance, waterproofing, painting, flooring, structural inspections, project management, cleaning, landscaping, Barco Assist, Barco Hygiene and Barco Tech. Keep replies short and collect name, location and job details.</textarea></label>
         <label>Fallback / WhatsApp handoff <textarea id="fallback">I’m not fully sure on that one. Please send the Barco team a WhatsApp message and they can route your enquiry.</textarea></label>
         <button class="btn" id="save">Apply to demo chat</button>
-        <p class="small">Static page preview. The real backend repo is built separately and stores these settings in SQLite after Google login.</p>
+        <p class="small">Static page preview. The real backend stores these parameters in SQLite after Google login. No paid AI API required.</p>
       </section>
 
       <section class="card chat">
         <div class="chatHead"><span>Barco AI Assistant</span><span>Demo</span></div>
         <div class="chatBody" id="chatBody"></div>
-        <div class="chatInput"><input id="chatInput" placeholder="Ask about maintenance, waterproofing, inspections..."><button id="send">Send</button></div>
+        <div class="chatInput"><input id="chatInput" placeholder="Say hello or ask about waterproofing, maintenance, inspections..."><button id="send">Send</button></div>
       </section>
     </div>
 
     <div class="grid">
       <section class="card">
-        <h2>What the real backend includes</h2>
+        <h2>What the backend includes</h2>
         <div class="list">
           <div><b>Google Authentication</b><br><span class="small">Admin users sign in with Google before changing bot settings.</span></div>
-          <div><b>Bot Parameters</b><br><span class="small">Allowed topics, blocked topics, knowledge/context, fallback text and WhatsApp number.</span></div>
-          <div><b>AI Chat API</b><br><span class="small">Can use OpenAI when key is configured. Without key, safe demo replies still work.</span></div>
-          <div><b>WhatsApp Handoff</b><br><span class="small">When out of scope or uncertain, the bot gives a WhatsApp link with enquiry text.</span></div>
+          <div><b>Bot Parameters</b><br><span class="small">Keywords, fixed replies, blocked topics, fallback text and WhatsApp number.</span></div>
+          <div><b>No AI API needed</b><br><span class="small">The bot greets, matches keywords/parameters, replies from configured text, and hands off when unsure.</span></div>
+          <div><b>WhatsApp Handoff</b><br><span class="small">When no parameter matches, the bot asks if the visitor wants an agent and gives a WhatsApp link.</span></div>
         </div>
       </section>
       <section class="card">
         <h2>Deployment note</h2>
-        <p>GitHub Pages cannot run a Node backend. To make this fully live, host the backend on a server/subdomain, then embed:</p>
+        <p>GitHub Pages cannot run a Node backend. To make the parameter bot fully live, host the backend on a server/subdomain, then embed:</p>
         <p><code>&lt;script src="https://api.example.com/widget.js" data-bot-id="barco-demo"&gt;&lt;/script&gt;</code></p>
         <p>Backend folder: <code>smartsite-ai-bot-backend</code></p>
       </section>
@@ -62,9 +62,9 @@
     function esc(v){return String(v).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))}
     function add(type,text){body.insertAdjacentHTML('beforeend',`<div class="msg ${type}">${esc(text)}</div>`);body.scrollTop=body.scrollHeight}
     function apply(){settings.business=business.value;settings.topics=topics.value.toLowerCase();settings.knowledge=knowledge.value;settings.fallback=fallback.value;add('',`Settings updated. I will now stay within: ${topics.value.split(',').slice(0,5).join(', ')}...`)}
-    function reply(q){const t=q.toLowerCase();const allowed=settings.topics.split(',').map(x=>x.trim()).filter(Boolean);const ok=allowed.some(x=>x && t.includes(x.split(' ')[0])) || /barco|help|quote|service|property|building|maintenance|waterproof|paint|clean|inspect|floor|project/.test(t);if(!ok){add('',settings.fallback + ' WhatsApp handoff: https://wa.me/?text=' + encodeURIComponent('Hi Barco Solutions, I need help with: '+q));return}add('',`Yes — I can help with that. ${settings.business} can route enquiries around property services and facilities work. Please send your name, location, and a short description. If you want, I can prepare this for WhatsApp.`)}
+    function reply(q){const t=q.toLowerCase().trim();if(/^(hi|hello|hey|good morning|good afternoon|good evening)/.test(t)){add('',`Hello 👋 How can I assist you with ${settings.business}?`);return}const allowed=settings.topics.split(',').map(x=>x.trim()).filter(Boolean);const match=allowed.find(x=>x && t.includes(x.split(' ')[0].toLowerCase()));if(!match){add('',settings.fallback + ' WhatsApp handoff: https://wa.me/?text=' + encodeURIComponent('Hi Barco Solutions, I need help with: '+q));return}add('',`Yes, we can help with ${match}. Please send your name, location and a short description so the team can follow up.`)}
     document.getElementById('save').onclick=apply;document.getElementById('send').onclick=()=>{const q=input.value.trim();if(!q)return;input.value='';add('user',q);setTimeout(()=>reply(q),350)};input.onkeydown=e=>{if(e.key==='Enter')send.click()};
-    apply();add('',`Hi 👋 I’m the backend-ready Barco assistant. Ask me about maintenance, waterproofing, inspections, cleaning or project work.`)
+    apply();add('',`Hi 👋 I’m the parameter-based Barco assistant. Say hello, or ask about maintenance, waterproofing, inspections, cleaning or project work.`)
   </script>
 </body>
 </html>
