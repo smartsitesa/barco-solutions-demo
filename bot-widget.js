@@ -43,11 +43,14 @@
   function bot(){
     setHead(cfg.botTitle||'Website Bot',cfg.botSubtitle||'Parameter-based assistant');
     const messages=[];
+    const quickReplies = Array.isArray(cfg.quickReplies) ? cfg.quickReplies : [];
     function add(type,text,extra=''){messages.push({type,text,extra}); draw();}
-    function draw(){body.innerHTML='<div class="aiChat">'+messages.map(m=>`<div class="chatMsg ${m.type}">${escapeHtml(m.text)}${m.extra||''}</div>`).join('')+'</div><div class="chatInputRow"><input id="botInput" placeholder="Type your message..."><button id="botSend">Send</button></div>'+footer(); const chat=body.querySelector('.aiChat'); chat.scrollTop=chat.scrollHeight; const inp=document.getElementById('botInput'); document.getElementById('botSend').onclick=submit; inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();submit()}}; setTimeout(()=>inp.focus(),20)}
+    function quickHtml(){return quickReplies.length ? `<div class="chatChoices">${quickReplies.map(q=>`<button data-quick="${escapeHtml(q)}">${escapeHtml(q)}</button>`).join('')}</div>` : ''}
+    function draw(){body.innerHTML='<div class="aiChat">'+messages.map(m=>`<div class="chatMsg ${m.type}">${escapeHtml(m.text)}${m.extra||''}</div>`).join('')+'</div>'+quickHtml()+'<div class="chatInputRow"><input id="botInput" placeholder="Type your message..."><button id="botSend">Send</button></div>'+footer(); const chat=body.querySelector('.aiChat'); chat.scrollTop=chat.scrollHeight; const inp=document.getElementById('botInput'); document.getElementById('botSend').onclick=submit; body.querySelectorAll('[data-quick]').forEach(b=>b.onclick=()=>submitText(b.dataset.quick)); inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();submit()}}; setTimeout(()=>inp.focus(),20)}
     function findReply(text){const t=text.toLowerCase(); for(const p of params){if((p.keywords||[]).some(k=>t.includes(String(k).toLowerCase()))) return p.reply} return null}
-    function submit(){const inp=document.getElementById('botInput'); const text=inp.value.trim(); if(!text)return; add('user',text); const reply=findReply(text); if(reply){setTimeout(()=>add('bot',reply),250)}else{const link=`<br><br><a target="_blank" rel="noreferrer" style="color:#0b7d16;font-weight:900" href="${waUrl('Hi '+businessName+', I need help with: '+text)}">Speak to an agent on WhatsApp</a>`; setTimeout(()=>add('bot',cfg.fallback||'I am not sure about that. Do you want to speak to an agent?',link),250)}}
-    add('bot',`Hello 👋 How can I assist you with ${businessName}?`);
+    function submitText(text){if(!text)return; add('user',text); const reply=findReply(text); if(reply){setTimeout(()=>add('bot',reply),250)}else{const link=`<br><br><a target="_blank" rel="noreferrer" style="color:#0b7d16;font-weight:900" href="${waUrl('Hi '+businessName+', I need help with: '+text)}">Speak to an agent on WhatsApp</a>`; setTimeout(()=>add('bot',cfg.fallback||'I am not sure about that. Do you want to speak to an agent?',link),250)}}
+    function submit(){const inp=document.getElementById('botInput'); const text=inp.value.trim(); inp.value=''; submitText(text)}
+    add('bot',cfg.introMessage || `Hello 👋 How can I assist you with ${businessName}?`);
   }
   function render(v){if(v==='menu')menu(); if(v==='email'||v==='call'||v==='whatsapp')contact(v); if(v==='bot')bot();}
   document.getElementById('aiFab').onclick=()=>{panel.hidden=false;render('menu')};
