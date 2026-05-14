@@ -36,5 +36,15 @@ window.SmartSiteBotConfig = {
     { keywords: ['quote', 'price', 'cost', 'quotation', 'estimate'], reply: 'I can help prepare a quote request. Please send your name, contact number, location, service needed, and a short description of the work.' },
     { keywords: ['urgent', 'emergency', 'asap', 'today'], reply: 'If it is urgent, it is best to speak to an agent. Please send a WhatsApp with your name, location, issue, and photos if possible.' },
     { keywords: ['agent', 'human', 'person', 'whatsapp', 'call me', 'contact'], reply: 'No problem — I can route you to an agent. Use the WhatsApp handoff and include your name, location, and what you need help with.' }
+  ],
+  autoUpdateFromSite: true,
+  sitePages: [
+    { label: 'Home', href: 'index.html' }
+  ],
+  siteAnswers: [
+    { keywords: ['who are you', 'about barco', 'what is barco', 'company'], reply: 'Barco Solutions is presented as a multi-division property and facilities services brand, with Barco Solutions, Barco Assist, Barco Hygiene and Barco Tech.' , links: [{ label: 'Open site', href: 'index.html' }] },
+    { keywords: ['clients', 'client logos', 'who do you work with'], reply: 'The demo site includes a client-logo section to show credibility and the type of organisations Barco can serve.', links: [{ label: 'View clients', href: 'index.html#clients' }] },
+    { keywords: ['how do you measure', 'measure', 'reporting', 'visibility'], reply: 'The site highlights measurement/reporting as part of the Barco value: visibility, tracking and clearer project or facilities management.', links: [{ label: 'View measurement section', href: 'index.html#measure' }] },
+    { keywords: ['commitment', 'why choose', 'why barco'], reply: 'Barco’s positioning is around coordinated services, multiple divisions, reliable support and practical project/facilities visibility.', links: [{ label: 'View why choose Barco', href: 'index.html#why' }] }
   ]
 };
