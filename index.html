@@ -166,6 +166,9 @@
       .client-logo { flex-basis: 150px; min-height:82px; padding:14px; }
       .client-logo img { max-height:44px; width:auto; max-width:100%; }
     }
+
+    /* Smart WhatsApp / AI assistant demo */
+    .aiFab{position:fixed;right:22px;bottom:22px;z-index:80;display:flex;align-items:center;gap:9px;border:0;border-radius:999px;padding:14px 18px;background:#25d366;color:#06130a;font-weight:900;box-shadow:0 18px 45px rgba(0,0,0,.28);cursor:pointer;font-family:inherit}.aiFab svg{width:20px;height:20px}.aiPanel{position:fixed;right:22px;bottom:84px;z-index:90;width:min(400px,calc(100vw - 28px));max-height:76vh;overflow:hidden;border-radius:24px;background:#08224a;border:1px solid rgba(255,255,255,.16);box-shadow:0 28px 90px rgba(8,34,74,.38);color:#fff}.aiHead{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;background:linear-gradient(135deg,#0d2d61,#08224a);border-bottom:1px solid rgba(255,255,255,.14)}.aiHead>div{display:flex;align-items:center;gap:10px}.aiHead b{display:block}.aiHead small{display:block;color:rgba(255,255,255,.74)}.aiHead button{border:0;background:transparent;color:#fff;font-size:24px;cursor:pointer}.aiBody{padding:16px;display:grid;gap:12px;max-height:60vh;overflow:auto}.aiMsg{padding:12px 14px;border-radius:16px;line-height:1.45;background:rgba(255,255,255,.09);color:#eef5ff}.aiChoices{display:grid;gap:9px}.aiChoices.two{grid-template-columns:1fr 1fr}.aiChoices button,.aiNext,.aiActions a,.aiActions button{border:1px solid rgba(255,255,255,.16);border-radius:13px;padding:12px 14px;background:rgba(255,255,255,.08);color:#fff;text-align:left;font-weight:800;cursor:pointer;text-decoration:none;font-family:inherit}.aiChoices button:hover,.aiChoices button.selected{border-color:#ff5e14;color:#fff;background:rgba(255,94,20,.28)}.aiNext{background:#ff5e14;color:#fff;text-align:center;border-color:#ff5e14}.aiInput{width:100%;padding:13px 14px;border-radius:13px;border:1px solid rgba(255,255,255,.16);background:#0d2d61;color:#fff;font-family:inherit}.aiInput::placeholder{color:rgba(255,255,255,.62)}.aiSummary{white-space:pre-wrap;margin:0;padding:12px;border-radius:14px;background:#061832;color:#dbe7f2;font-family:inherit;font-size:13px}.aiActions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.aiActions a{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:#06130a;border-color:#25d366}.aiActions button{display:flex;align-items:center;justify-content:center;gap:8px}.aiNote{font-size:12px;color:rgba(255,255,255,.68);margin:0}@media(max-width:560px){.aiFab{right:14px;bottom:14px}.aiPanel{right:14px;bottom:72px}.aiChoices.two,.aiActions{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -352,5 +355,48 @@
   <footer>
     Copyright BARCO SOLUTIONS 2025. Demo rebuild aligned more closely to the live public site structure.
   </footer>
+
+  <button class="aiFab" id="aiFab" aria-label="Open Barco AI assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+    <span>AI Help</span>
+  </button>
+  <div class="aiPanel" id="aiPanel" role="dialog" aria-label="Barco AI WhatsApp assistant" hidden>
+    <div class="aiHead">
+      <div>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+        <span><b>Barco AI Assistant</b><small>Project triage → WhatsApp</small></span>
+      </div>
+      <button id="aiClose" aria-label="Close assistant">×</button>
+    </div>
+    <div class="aiBody" id="aiBody"></div>
+  </div>
+  <script>
+    (function(){
+      const services=['Barco Solutions - building / renovation','Barco Assist - maintenance support','Barco Hygiene - cleaning / hygiene','Barco Tech - reporting / visibility','Not sure - help me choose'];
+      const needs=['Waterproofing','Painting / flooring','Structural inspection','Project management','Cleaning / landscaping','Facilities maintenance','Technology reporting','General quote'];
+      const state={service:'',needs:[],details:'',name:''};
+      let step='service';
+      const panel=document.getElementById('aiPanel'), body=document.getElementById('aiBody');
+      document.getElementById('aiFab').onclick=()=>{panel.hidden=false; render()};
+      document.getElementById('aiClose').onclick=()=>{panel.hidden=true};
+      const esc=(v)=>String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+      const summary=()=>`Hi Barco, I need help with a property/project enquiry.\nDivision: ${state.service||'Not selected'}\nNeeds: ${state.needs.join(', ')||'Not selected'}\nProject details: ${state.details||'Not supplied'}\nName: ${state.name||'Not supplied'}`;
+      const wa=()=>`https://wa.me/?text=${encodeURIComponent(summary())}`;
+      function render(){
+        let out='<div class="aiMsg">Hi 👋 I can help prepare a Barco enquiry. What do you need help with?</div>';
+        if(step==='service') out += '<div class="aiChoices">'+services.map(x=>`<button data-service="${esc(x)}">${esc(x)}</button>`).join('')+'</div><p class="aiNote">Demo mode: opens WhatsApp with a ready message. Add Barco\'s WhatsApp number later for direct sending.</p>';
+        if(step==='needs') out += '<div class="aiMsg">Select what applies.</div><div class="aiChoices two">'+needs.map(x=>`<button class="${state.needs.includes(x)?'selected':''}" data-need="${esc(x)}">${esc(x)}</button>`).join('')+'</div><button class="aiNext" data-next="details">Next</button>';
+        if(step==='details') out += '<div class="aiMsg">Tell us about the property, location, or work needed.</div><input class="aiInput" id="aiDetails" placeholder="e.g. apartment block waterproofing in Johannesburg" value="'+esc(state.details)+'"><button class="aiNext" data-next="name">Next</button>';
+        if(step==='name') out += '<div class="aiMsg">Your name?</div><input class="aiInput" id="aiName" placeholder="Your name" value="'+esc(state.name)+'"><button class="aiNext" data-next="done">Create WhatsApp enquiry</button>';
+        if(step==='done') out += '<div class="aiMsg">Ready. Open WhatsApp with this message:</div><pre class="aiSummary">'+esc(summary())+'</pre><div class="aiActions"><a href="'+wa()+'" target="_blank" rel="noreferrer">Open WhatsApp</a><button data-reset="1">Start over</button></div><p class="aiNote">This is a front-end demo assistant. Production version can send to WhatsApp Cloud API / CRM / email.</p>';
+        body.innerHTML=out;
+        body.querySelectorAll('[data-service]').forEach(b=>b.onclick=()=>{state.service=b.dataset.service; step='needs'; render()});
+        body.querySelectorAll('[data-need]').forEach(b=>b.onclick=()=>{const v=b.dataset.need; state.needs=state.needs.includes(v)?state.needs.filter(x=>x!==v):[...state.needs,v]; render()});
+        body.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{const d=document.getElementById('aiDetails'); if(d) state.details=d.value; const n=document.getElementById('aiName'); if(n) state.name=n.value; step=b.dataset.next; render()});
+        const reset=body.querySelector('[data-reset]'); if(reset) reset.onclick=()=>{state.service=''; state.needs=[]; state.details=''; state.name=''; step='service'; render()};
+      }
+    })();
+  </script>
+
 </body>
 </html>
