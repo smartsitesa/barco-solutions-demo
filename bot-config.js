@@ -1,50 +1,43 @@
 window.SmartSiteBotConfig = {
   businessName: 'Barco Solutions',
   title: 'Barco Solutions',
-  subtitle: 'How can we help you today?',
-  botTitle: 'Barco Bot',
-  botSubtitle: 'Parameter-based assistant',
+  subtitle: 'Project enquiries and scope guidance',
+  botTitle: 'Barco Solutions AI Assist',
+  botSubtitle: 'Project triage assistant',
   whatsappNumber: '',
-  genericMessage: 'Hi Barco Solutions, I would like to enquire about building, renovation, maintenance or facilities services.',
-  fallback: 'I am not sure about that. Do you want to speak to an agent?',
-  emailSubject: 'Barco Solutions enquiry',
-  introMessage: 'Hello 👋 I can help with Barco services, divisions, quote requests, inspections, maintenance, waterproofing, painting, flooring, hygiene, landscaping and tech/reporting. Choose an option or type your question.',
+  genericMessage: 'Hi Barco Solutions, I would like to discuss a project, joinery work, or a concept-to-completion enquiry.',
+  fallback: 'I am not fully sure about that yet, but I can still help route your enquiry.',
+  emailSubject: 'Barco Solutions project enquiry',
+  introMessage: 'Hello 👋 I can help with project enquiries, B2B or B2C work, joinery, project flow questions, and AI-assisted contact routing. Choose an option or type your question.',
   quickReplies: [
-    'What can you help with?',
-    'I need a quote',
-    'Waterproofing',
-    'Maintenance',
-    'Inspection',
-    'Painting or flooring',
-    'Cleaning or landscaping',
-    'Barco divisions',
-    'Speak to an agent'
+    'I need a project quote',
+    'What does Barco Solutions do?',
+    'Joinery services',
+    'How does the project flow work?',
+    'B2B enquiry',
+    'B2C enquiry',
+    'Contact the team'
   ],
   parameters: [
-    { keywords: ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening'], reply: 'Hello 👋 How can I assist you with Barco Solutions? You can ask about waterproofing, maintenance, inspections, painting, flooring, cleaning, landscaping, Barco divisions, or quotes.' },
-    { keywords: ['what can you help with', 'help with', 'options', 'services', 'menu'], reply: 'I can help with: waterproofing, painting, flooring, maintenance, structural inspections, project management, cleaning, landscaping, hygiene services, Barco Tech/reporting, quote requests, and routing you to the right Barco division.' },
-    { keywords: ['division', 'divisions', 'barco assist', 'barco hygiene', 'barco tech', 'barco solutions'], reply: 'Barco has multiple divisions: Barco Solutions for property/project work, Barco Assist for support and maintenance, Barco Hygiene for cleaning/hygiene needs, and Barco Tech for reporting/technology visibility.' },
-    { keywords: ['waterproofing', 'leak', 'roof leak', 'damp', 'water damage', 'sealing'], reply: 'Yes, Barco can help with waterproofing and leak-related building work. Please send your name, location, where the leak/damp is, and whether it is urgent.' },
-    { keywords: ['painting', 'paint', 'repaint', 'wall coating'], reply: 'Yes, Barco can assist with painting work. Please share the property type, area/rooms, location, and when you need it done.' },
-    { keywords: ['flooring', 'floor', 'floors', 'tiles', 'vinyl', 'laminate'], reply: 'Yes, Barco can assist with flooring-related enquiries. Please share the floor type, approximate size/area, condition, and location.' },
-    { keywords: ['maintenance', 'repair', 'fix', 'facilities', 'handyman', 'broken'], reply: 'Yes, Barco can help with maintenance and facilities support. Please send your name, location, photos if possible, and a short description of the issue.' },
-    { keywords: ['inspection', 'structural', 'crack', 'assessment', 'site visit', 'check'], reply: 'Yes, Barco can assist with inspections and assessments. Please share photos if available, your location, and what concern you want checked.' },
-    { keywords: ['project management', 'project', 'renovation', 'building', 'construction', 'upgrade'], reply: 'Yes, Barco can assist with building, renovation, and project management enquiries. Please share the project type, location, timeline, and what outcome you want.' },
-    { keywords: ['cleaning', 'hygiene', 'sanitize', 'sanitise', 'deep clean'], reply: 'Yes, Barco Hygiene can help route cleaning and hygiene enquiries. Please send the site type, location, frequency needed, and any special requirements.' },
-    { keywords: ['landscaping', 'garden', 'grounds', 'outdoor', 'grass'], reply: 'Yes, Barco can help with landscaping and site-care enquiries. Please share the location, outdoor area size, and what needs to be done.' },
-    { keywords: ['barco tech', 'tech', 'reporting', 'technology', 'dashboard', 'visibility'], reply: 'Yes, Barco Tech can assist with technology and reporting visibility. Please describe what you want tracked, reported, or improved.' },
-    { keywords: ['quote', 'price', 'cost', 'quotation', 'estimate'], reply: 'I can help prepare a quote request. Please send your name, contact number, location, service needed, and a short description of the work.' },
-    { keywords: ['urgent', 'emergency', 'asap', 'today'], reply: 'If it is urgent, it is best to speak to an agent. Please send a WhatsApp with your name, location, issue, and photos if possible.' },
-    { keywords: ['agent', 'human', 'person', 'whatsapp', 'call me', 'contact'], reply: 'No problem — I can route you to an agent. Use the WhatsApp handoff and include your name, location, and what you need help with.' }
+    { keywords: ['hello', 'hi', 'hey'], reply: 'Hello 👋 I can help with Barco Solutions project, joinery, B2B, B2C, and contact enquiries.' },
+    { keywords: ['what does barco solutions do', 'services', 'what do you do', 'offer'], reply: 'Barco Solutions is positioned around project delivery from concept to completion, including planning, coordination, fit-out style work, and joinery-led detail.' },
+    { keywords: ['quote', 'price', 'cost', 'quotation', 'estimate'], reply: 'For a project quote, please send your name, project type, location, timeline, budget range if known, and whether the work is commercial or private.' },
+    { keywords: ['joinery', 'cabinet', 'built in', 'woodwork', 'shopfitting'], reply: 'The joinery section is being positioned as a premium Barco capability with gallery-led presentation and room for a future product/store layer.' },
+    { keywords: ['project flow', 'concept to completion', 'how do you work', 'process'], reply: 'The current project flow is: brief, planning, execution, finish/detail refinement, and handover. The site explains this as the concept-to-completion path.' },
+    { keywords: ['b2b', 'commercial', 'developer', 'property'], reply: 'Yes — the landing page is designed to speak to B2B project stakeholders including developers, landlords, and property teams.' },
+    { keywords: ['b2c', 'home', 'private client', 'residential'], reply: 'Yes — the site also positions Barco Solutions for B2C/private clients who need a clearer project journey and high-touch communication.' },
+    { keywords: ['contact', 'agent', 'human', 'speak to someone'], reply: 'I can help route your enquiry. Please send your name, project location, what you need done, and your timeline so the right person can follow up.' }
   ],
   autoUpdateFromSite: true,
   sitePages: [
-    { label: 'Home', href: 'index.html' }
+    { label: 'Welcome', href: 'index.html#welcome' },
+    { label: 'Projects', href: 'index.html#projects' },
+    { label: 'Joinery', href: 'index.html#joinery' },
+    { label: 'Contact', href: 'index.html#contact' }
   ],
   siteAnswers: [
-    { keywords: ['who are you', 'about barco', 'what is barco', 'company'], reply: 'Barco Solutions is presented as a multi-division property and facilities services brand, with Barco Solutions, Barco Assist, Barco Hygiene and Barco Tech.' , links: [{ label: 'Open site', href: 'index.html' }] },
-    { keywords: ['clients', 'client logos', 'who do you work with'], reply: 'The demo site includes a client-logo section to show credibility and the type of organisations Barco can serve.', links: [{ label: 'View clients', href: 'index.html#clients' }] },
-    { keywords: ['how do you measure', 'measure', 'reporting', 'visibility'], reply: 'The site highlights measurement/reporting as part of the Barco value: visibility, tracking and clearer project or facilities management.', links: [{ label: 'View measurement section', href: 'index.html#measure' }] },
-    { keywords: ['commitment', 'why choose', 'why barco'], reply: 'Barco’s positioning is around coordinated services, multiple divisions, reliable support and practical project/facilities visibility.', links: [{ label: 'View why choose Barco', href: 'index.html#why' }] }
+    { keywords: ['joinery page', 'joinery'], reply: 'The Joinery section is positioned as a premium, craft-led capability ready for richer examples once the final reference direction is shared.', links: [{ label: 'Open Joinery section', href: 'index.html#joinery' }] },
+    { keywords: ['projects', 'project page', 'project flow'], reply: 'The Projects section explains Barco Solutions as a concept-to-completion delivery partner rather than a loose list of services.', links: [{ label: 'Open Projects section', href: 'index.html#projects' }] },
+    { keywords: ['contact', 'advanced contact', 'ai chat'], reply: 'The contact section already includes an AI-guided route and placeholders for final phone/email/WhatsApp details once confirmed.', links: [{ label: 'Open Contact section', href: 'index.html#contact' }] }
   ]
 };

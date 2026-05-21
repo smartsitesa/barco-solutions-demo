@@ -1,28 +1,37 @@
-# Barco Solutions Rebuild Spec
+# Barco Solutions Demo Spec
 
-Goal: rebuild the public-facing Barco Solutions site and propose a stronger replacement backend/operations flow without needing current provider backend access.
+Goal: rebuild the Barco Solutions demo around the PDF website breakdown while matching the premium visual direction already established in the Barco Group demo.
 
-## Public findings
-- Current site is hosted on a LeadConnector / GoHighLevel-style stack.
-- Public site messaging focuses on building, renovation, and maintenance solutions.
-- Services mentioned publicly include waterproofing, painting, flooring, structural inspections, project management, cleaning, and landscaping.
-- Likely current WhatsApp/chat handling is tied to HighLevel conversation/workflow tooling, but exact backend logic is not publicly visible.
+## Document-driven scope
+- Domain target: barcosolutions.co.za
+- Build pages/sections for:
+  - Landing welcome page
+  - Projects page / project methodology
+  - Joinery page
+  - Contact page with AI assistant positioning
+- Keep wording cautious where inputs are still missing.
 
-## Rebuild direction
-- Keep look and positioning professional and property-services focused.
-- Improve clarity of service categories.
-- Improve conversion path to quote request and WhatsApp contact.
-- Make the site easier to manage on our own stack.
+## Core content from the PDF
+- Landing page should combine About Us, B2B, B2C, Affiliates, and Team into one strong welcome flow.
+- Projects page should explain service offering, show a concept-to-completion project diagram, include project gallery positioning, and track record messaging.
+- Joinery page should stay aligned to a future reference page once shared, with gallery support and later online-store placeholder.
+- Contact page should feel advanced and easy to use, with AI assistant support and placeholders until official contact details are confirmed.
 
-## Replacement backend we want
-- Hosted website on our stack
-- WhatsApp-first lead capture
-- simple quote request form
-- lead status tracking
-- manual + semi-automated follow-up workflow
-- monthly reporting
-- clear handoff rules for high-intent leads
+## Design direction
+- Match Barco Group demo look and feel:
+  - dark navy + gold + electric blue palette
+  - blueprint / orbital / polished industrial motion cues
+  - elegant serif headlines with crisp sans body text
+  - premium facility / project delivery tone
+- Site should still read as Barco Solutions, not Barco Group duplicated.
 
-## Migration truth
-- Public site can be rebuilt without backend access.
-- Exact CRM/workflow/inbox migration would still require current provider access.
+## Constraints
+- Do not invent exact contact details beyond what is already public/confirmed.
+- Keep joins between sections believable and conversion-led.
+- Keep demo deployable as a static site on GitHub Pages.
+
+## Acceptance
+- Static page validates enough to render cleanly.
+- Mobile layout remains usable.
+- Bot copy aligns to Barco Solutions scope.
+- Repo ready for push to SmartSite test GitHub account.
