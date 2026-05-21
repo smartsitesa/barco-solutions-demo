@@ -1,43 +1,46 @@
 window.SmartSiteBotConfig = {
   businessName: 'Barco Solutions',
   title: 'Barco Solutions',
-  subtitle: 'Project enquiries and scope guidance',
-  botTitle: 'Barco Solutions AI Assist',
-  botSubtitle: 'Project triage assistant',
+  subtitle: 'Quotes, inspections and project support',
+  botTitle: 'Barco Solutions Assist',
+  botSubtitle: 'Project and property support',
   whatsappNumber: '',
-  genericMessage: 'Hi Barco Solutions, I would like to discuss a project, joinery work, or a concept-to-completion enquiry.',
-  fallback: 'I am not fully sure about that yet, but I can still help route your enquiry.',
-  emailSubject: 'Barco Solutions project enquiry',
-  introMessage: 'Hello 👋 I can help with project enquiries, B2B or B2C work, joinery, project flow questions, and AI-assisted contact routing. Choose an option or type your question.',
+  genericMessage: 'Hi Barco Solutions, I need help with a property maintenance, renovation, inspection or project enquiry.',
+  fallback: 'I can still help route your enquiry. Please share a few more details.',
+  emailSubject: 'Barco Solutions enquiry',
+  introMessage: 'Hello 👋 I can help with Barco Solutions services like waterproofing, painting, flooring, inspections, project support, cleaning and landscaping. Choose an option or type your question.',
   quickReplies: [
-    'I need a project quote',
-    'What does Barco Solutions do?',
-    'Joinery services',
-    'How does the project flow work?',
-    'B2B enquiry',
-    'B2C enquiry',
+    'I need a quote',
+    'Waterproofing',
+    'Painting',
+    'Flooring',
+    'Inspection',
+    'Project support',
     'Contact the team'
   ],
   parameters: [
-    { keywords: ['hello', 'hi', 'hey'], reply: 'Hello 👋 I can help with Barco Solutions project, joinery, B2B, B2C, and contact enquiries.' },
-    { keywords: ['what does barco solutions do', 'services', 'what do you do', 'offer'], reply: 'Barco Solutions is positioned around project delivery from concept to completion, including planning, coordination, fit-out style work, and joinery-led detail.' },
-    { keywords: ['quote', 'price', 'cost', 'quotation', 'estimate'], reply: 'For a project quote, please send your name, project type, location, timeline, budget range if known, and whether the work is commercial or private.' },
-    { keywords: ['joinery', 'cabinet', 'built in', 'woodwork', 'shopfitting'], reply: 'The joinery section is being positioned as a premium Barco capability with gallery-led presentation and room for a future product/store layer.' },
-    { keywords: ['project flow', 'concept to completion', 'how do you work', 'process'], reply: 'The current project flow is: brief, planning, execution, finish/detail refinement, and handover. The site explains this as the concept-to-completion path.' },
-    { keywords: ['b2b', 'commercial', 'developer', 'property'], reply: 'Yes — the landing page is designed to speak to B2B project stakeholders including developers, landlords, and property teams.' },
-    { keywords: ['b2c', 'home', 'private client', 'residential'], reply: 'Yes — the site also positions Barco Solutions for B2C/private clients who need a clearer project journey and high-touch communication.' },
-    { keywords: ['contact', 'agent', 'human', 'speak to someone'], reply: 'I can help route your enquiry. Please send your name, project location, what you need done, and your timeline so the right person can follow up.' }
+    { keywords: ['hello', 'hi', 'hey'], reply: 'Hello 👋 I can help with property maintenance, renovation, project support and quote enquiries for Barco Solutions.' },
+    { keywords: ['quote', 'price', 'cost', 'quotation', 'estimate'], reply: 'For a quote, please send your name, property type, location, service needed, timeline, and photos if available.' },
+    { keywords: ['waterproofing', 'leak', 'damp', 'roof'], reply: 'Barco Solutions can help with waterproofing and leak-related issues. Please send the affected area, location and how urgent it is.' },
+    { keywords: ['painting', 'paint'], reply: 'Barco Solutions can assist with painting work. Please share the property type, area size, location and timeframe.' },
+    { keywords: ['flooring', 'floor', 'tiles', 'vinyl', 'laminate'], reply: 'Barco Solutions can assist with flooring upgrades and replacements. Please share the floor type, approximate area and location.' },
+    { keywords: ['inspection', 'structural', 'assessment', 'site visit'], reply: 'For inspections, please send the concern, property location and any supporting photos so the right next step can be suggested.' },
+    { keywords: ['project', 'renovation', 'building', 'maintenance'], reply: 'Barco Solutions handles a wide spectrum of building, renovation and maintenance support. Please share what needs to be done and where the site is located.' },
+    { keywords: ['cleaning', 'landscaping', 'garden'], reply: 'Yes — Barco Solutions also positions around cleaning and landscaping support. Please send the site type, size and frequency needed.' },
+    { keywords: ['contact', 'agent', 'human', 'team'], reply: 'Please share your name, contact number, location and the kind of work you need, and I can help route the enquiry.' }
   ],
   autoUpdateFromSite: true,
   sitePages: [
-    { label: 'Welcome', href: 'index.html#welcome' },
+    { label: 'About', href: 'index.html#about' },
+    { label: 'Services', href: 'index.html#services' },
     { label: 'Projects', href: 'index.html#projects' },
     { label: 'Joinery', href: 'index.html#joinery' },
     { label: 'Contact', href: 'index.html#contact' }
   ],
   siteAnswers: [
-    { keywords: ['joinery page', 'joinery'], reply: 'The Joinery section is positioned as a premium, craft-led capability ready for richer examples once the final reference direction is shared.', links: [{ label: 'Open Joinery section', href: 'index.html#joinery' }] },
-    { keywords: ['projects', 'project page', 'project flow'], reply: 'The Projects section explains Barco Solutions as a concept-to-completion delivery partner rather than a loose list of services.', links: [{ label: 'Open Projects section', href: 'index.html#projects' }] },
-    { keywords: ['contact', 'advanced contact', 'ai chat'], reply: 'The contact section already includes an AI-guided route and placeholders for final phone/email/WhatsApp details once confirmed.', links: [{ label: 'Open Contact section', href: 'index.html#contact' }] }
+    { keywords: ['services', 'what do you do'], reply: 'Barco Solutions is positioned around building, renovation, maintenance, waterproofing, painting, flooring, inspections, cleaning and landscaping support.', links: [{ label: 'Open Services', href: 'index.html#services' }] },
+    { keywords: ['projects', 'project flow'], reply: 'The Projects section explains the Barco Solutions flow from assessment and planning through delivery and completion.', links: [{ label: 'Open Projects', href: 'index.html#projects' }] },
+    { keywords: ['joinery'], reply: 'The Joinery section presents Barco Solutions as capable of detailed crafted interior and finish work as part of broader project delivery.', links: [{ label: 'Open Joinery', href: 'index.html#joinery' }] },
+    { keywords: ['contact', 'office', 'location'], reply: 'Barco Solutions is presented from 66A Section St, Paarden Eiland, Cape Town, 7405.', links: [{ label: 'Open Contact', href: 'index.html#contact' }] }
   ]
 };
