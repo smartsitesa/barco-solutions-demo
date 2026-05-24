@@ -25,3 +25,20 @@ document.querySelectorAll('.service-card,.value-card,.sector-card').forEach((car
     card.style.setProperty('--my', `${event.clientY - rect.top}px`);
   });
 });
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (!prefersReducedMotion) {
+  const hero = document.querySelector('.hero');
+  const heroPhoto = document.querySelector('.hero-photo');
+  const heroPhotoAlt = document.querySelector('.hero-photo-alt');
+
+  window.addEventListener('scroll', () => {
+    if (!hero || !heroPhoto) return;
+    const progress = Math.max(0, Math.min(1, window.scrollY / (hero.offsetHeight || 1)));
+    heroPhoto.style.transform = `scale(${1.05 + progress * 0.05}) translate3d(0, ${progress * -18}px, 0)`;
+    if (heroPhotoAlt) {
+      heroPhotoAlt.style.transform = `scale(${1.08 + progress * 0.04}) translate3d(0, ${progress * -10}px, 0)`;
+    }
+  }, { passive: true });
+}
