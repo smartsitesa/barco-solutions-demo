@@ -320,6 +320,26 @@ h3 {
   isolation: isolate;
 }
 
+.hero-primary-shot {
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity 0.9s ease, transform 6s ease;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .hero-primary-shot img,
 .hero-side-shot img,
 .hero-panel-shot img,
@@ -345,6 +365,29 @@ h3 {
   background: linear-gradient(180deg, rgba(20, 24, 28, 0.08), rgba(20, 24, 28, 0.76));
   backdrop-filter: blur(10px);
   color: #fff;
+}
+
+.hero-slide-dots {
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  z-index: 1;
+  display: flex;
+  gap: 8px;
+}
+
+.hero-slide-dots i {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.34);
+  transition: transform 0.22s ease, background 0.22s ease;
+}
+
+.hero-slide-dots i.is-active {
+  background: #fff;
+  transform: scale(1.18);
 }
 
 .hero-photo-caption span {
@@ -739,13 +782,11 @@ h3 {
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: grayscale(1) contrast(1.05);
-  opacity: 0.78;
-  transition: filter 0.22s ease, opacity 0.22s ease, transform 0.22s ease;
+  opacity: 0.96;
+  transition: opacity 0.22s ease, transform 0.22s ease;
 }
 
 .logo-item:hover img {
-  filter: none;
   opacity: 1;
   transform: scale(1.03);
 }
@@ -1089,6 +1130,11 @@ h3 {
 
   .media-frame.tall {
     min-height: 420px;
+  }
+
+  .hero-slide-dots {
+    top: 16px;
+    right: 16px;
   }
 
   .hero-matrix {

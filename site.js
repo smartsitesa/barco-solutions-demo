@@ -39,6 +39,42 @@ if (!prefersReducedMotion) {
       el.style.transform = `translate3d(0, ${offset}px, 0)`;
     });
   }, { passive: true });
+
+  const slideshow = document.querySelector('[data-slideshow]');
+
+  if (slideshow) {
+    const slides = [...slideshow.querySelectorAll('.hero-slide')];
+    const dots = [...slideshow.querySelectorAll('.hero-slide-dots i')];
+    const labelEl = slideshow.querySelector('[data-slide-label]');
+    const titleEl = slideshow.querySelector('[data-slide-title]');
+    const slideMeta = [
+      ['Barco Solutions', 'Construction and project delivery'],
+      ['Barco Solutions', 'Property maintenance and finishing'],
+      ['Barco Assist', 'Maintenance support'],
+      ['Barco Hygiene', 'Cleaning and hygiene']
+    ];
+
+    let activeIndex = 0;
+
+    const showSlide = (index) => {
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle('is-active', slideIndex === index);
+      });
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle('is-active', dotIndex === index);
+      });
+
+      if (labelEl && titleEl && slideMeta[index]) {
+        labelEl.textContent = slideMeta[index][0];
+        titleEl.textContent = slideMeta[index][1];
+      }
+    };
+
+    window.setInterval(() => {
+      activeIndex = (activeIndex + 1) % slides.length;
+      showSlide(activeIndex);
+    }, 3200);
+  }
 }
 
 const contactForm = document.querySelector('[data-contact-form]');
