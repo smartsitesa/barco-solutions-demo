@@ -313,6 +313,67 @@ h3 {
   min-height: 720px;
 }
 
+.hero-primary-shot,
+.hero-side-shot,
+.hero-panel-shot {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-primary-shot img,
+.hero-side-shot img,
+.hero-panel-shot img,
+.project-card img {
+  transition: transform 0.8s ease;
+}
+
+.hero-primary-shot:hover img,
+.hero-side-shot:hover img,
+.hero-panel-shot:hover img,
+.project-card:hover img {
+  transform: scale(1.04);
+}
+
+.hero-photo-caption {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 22px;
+  z-index: 1;
+  padding: 18px 18px 16px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(20, 24, 28, 0.08), rgba(20, 24, 28, 0.76));
+  backdrop-filter: blur(10px);
+  color: #fff;
+}
+
+.hero-photo-caption span {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.hero-photo-caption strong {
+  display: block;
+  font-size: 1.08rem;
+  line-height: 1.15;
+}
+
+.hero-photo-caption-compact {
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  padding: 14px 14px 13px;
+}
+
+.hero-photo-caption-compact strong {
+  font-size: 0.95rem;
+}
+
 .matrix-card {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -751,6 +812,26 @@ h3 {
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.08);
   padding: 28px;
+}
+
+.hero-panel-media {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.hero-panel-shot {
+  overflow: hidden;
+  min-height: 160px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hero-panel-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hero-panel ul,
