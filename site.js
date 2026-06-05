@@ -1,8 +1,17 @@
 const header = document.querySelector('[data-elevate]');
+const progressBar = document.querySelector('.scroll-progress i');
 const syncHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 24);
+const syncProgress = () => {
+  if (!progressBar) return;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const ratio = max > 0 ? (window.scrollY / max) * 100 : 0;
+  progressBar.style.setProperty('--scroll-progress', `${Math.min(100, Math.max(0, ratio))}%`);
+};
 
 syncHeader();
+syncProgress();
 window.addEventListener('scroll', syncHeader, { passive: true });
+window.addEventListener('scroll', syncProgress, { passive: true });
 
 const revealEls = document.querySelectorAll('[data-reveal]');
 
@@ -21,12 +30,14 @@ if (revealEls.length) {
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!prefersReducedMotion) {
-  const heroMedia = document.querySelector('.hero-visual .media-frame img');
+  const floatingEls = [...document.querySelectorAll('[data-float]')];
 
   window.addEventListener('scroll', () => {
-    if (!heroMedia) return;
-    const offset = Math.min(window.scrollY * 0.06, 26);
-    heroMedia.style.transform = `translate3d(0, ${offset}px, 0) scale(1.04)`;
+    floatingEls.forEach((el) => {
+      const speed = Number(el.dataset.floatSpeed || 1);
+      const offset = Math.min(window.scrollY * 0.028 * speed, 24 * speed);
+      el.style.transform = `translate3d(0, ${offset}px, 0)`;
+    });
   }, { passive: true });
 }
 

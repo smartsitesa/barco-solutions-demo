@@ -60,6 +60,25 @@ a {
   animation: noiseShift 22s ease-in-out infinite alternate;
 }
 
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 120;
+  height: 3px;
+  pointer-events: none;
+}
+
+.scroll-progress i {
+  display: block;
+  width: var(--scroll-progress, 0%);
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #d9c29d 52%, var(--ink));
+  box-shadow: 0 0 18px rgba(163, 123, 72, 0.45);
+  transition: width 0.12s linear;
+}
+
 .site-head {
   position: sticky;
   top: 0;
@@ -187,6 +206,14 @@ a {
   padding: 44px 0 30px;
 }
 
+.hero-line {
+  width: min(180px, 42vw);
+  height: 1px;
+  margin-top: 34px;
+  background: linear-gradient(90deg, rgba(163, 123, 72, 0.92), rgba(163, 123, 72, 0));
+  animation: linePulse 4.8s ease-in-out infinite;
+}
+
 .eyebrow {
   margin: 0 0 14px;
   text-transform: uppercase;
@@ -294,6 +321,8 @@ h3 {
     linear-gradient(135deg, rgba(163, 123, 72, 0.08), rgba(255, 255, 255, 0));
   box-shadow: var(--shadow-deep);
   transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .matrix-card span {
@@ -390,6 +419,25 @@ h3 {
   background: var(--surface);
   box-shadow: var(--shadow);
   transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.matrix-card::after,
+.note-card::after,
+.feature-card::after,
+.timeline-card::after,
+.project-card::after,
+.contact-card::after,
+.contact-form-card::after,
+.fact-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.22) 42%, transparent 62%);
+  transform: translateX(-130%);
+  transition: transform 0.8s ease;
+  pointer-events: none;
 }
 
 .matrix-card:hover,
@@ -403,6 +451,17 @@ h3 {
   transform: translateY(-4px);
   box-shadow: 0 30px 72px rgba(21, 26, 31, 0.14);
   border-color: rgba(163, 123, 72, 0.2);
+}
+
+.matrix-card:hover::after,
+.note-card:hover::after,
+.feature-card:hover::after,
+.timeline-card:hover::after,
+.project-card:hover::after,
+.contact-card:hover::after,
+.contact-form-card:hover::after,
+.fact-card:hover::after {
+  transform: translateX(130%);
 }
 
 .note-card {
@@ -513,6 +572,7 @@ h3 {
 
 .section-heading {
   margin-bottom: 34px;
+  position: relative;
 }
 
 .section-heading.left,
@@ -522,6 +582,15 @@ h3 {
 
 .section-heading.narrow h2 {
   max-width: 700px;
+}
+
+.section-heading::after {
+  content: "";
+  display: block;
+  width: 92px;
+  height: 1px;
+  margin-top: 22px;
+  background: linear-gradient(90deg, rgba(163, 123, 72, 0.84), rgba(163, 123, 72, 0));
 }
 
 .timeline-grid {
@@ -780,13 +849,15 @@ h3 {
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.72s ease, transform 0.72s ease;
+  transform: translateY(28px) scale(0.985);
+  filter: blur(8px);
+  transition: opacity 0.82s ease, transform 0.82s ease, filter 0.82s ease;
 }
 
 [data-reveal].in-view {
   opacity: 1;
   transform: none;
+  filter: blur(0);
 }
 
 @keyframes logoScroll {
@@ -813,6 +884,19 @@ h3 {
   }
   to {
     transform: translate3d(-18px, 24px, 0) scale(1.08);
+  }
+}
+
+@keyframes linePulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.18);
+    transform-origin: left;
   }
 }
 
