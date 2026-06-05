@@ -1,44 +1,57 @@
 const header = document.querySelector('[data-elevate]');
-const revealEls = document.querySelectorAll('.reveal');
+const syncHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 24);
 
-function updateHeader(){
-  header?.classList.toggle('is-scrolled', window.scrollY > 18);
-}
-updateHeader();
-window.addEventListener('scroll', updateHeader, { passive: true });
+syncHeader();
+window.addEventListener('scroll', syncHeader, { passive: true });
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
+const revealEls = document.querySelectorAll('[data-reveal]');
+
+if (revealEls.length) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
       entry.target.classList.add('in-view');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.16, rootMargin: '0px 0px -40px 0px' });
 
-revealEls.forEach((el) => observer.observe(el));
-
-document.querySelectorAll('.service-card,.value-card,.sector-card').forEach((card) => {
-  card.addEventListener('pointermove', (event) => {
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty('--mx', `${event.clientX - rect.left}px`);
-    card.style.setProperty('--my', `${event.clientY - rect.top}px`);
-  });
-});
+  revealEls.forEach((el) => revealObserver.observe(el));
+}
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (!prefersReducedMotion) {
-  const hero = document.querySelector('.hero');
-  const heroPhoto = document.querySelector('.hero-photo');
-  const heroPhotoAlt = document.querySelector('.hero-photo-alt');
+  const heroMedia = document.querySelector('.hero-visual .media-frame img');
 
   window.addEventListener('scroll', () => {
-    if (!hero || !heroPhoto) return;
-    const progress = Math.max(0, Math.min(1, window.scrollY / (hero.offsetHeight || 1)));
-    heroPhoto.style.transform = `scale(${1.05 + progress * 0.05}) translate3d(0, ${progress * -18}px, 0)`;
-    if (heroPhotoAlt) {
-      heroPhotoAlt.style.transform = `scale(${1.08 + progress * 0.04}) translate3d(0, ${progress * -10}px, 0)`;
-    }
+    if (!heroMedia) return;
+    const offset = Math.min(window.scrollY * 0.06, 26);
+    heroMedia.style.transform = `translate3d(0, ${offset}px, 0) scale(1.04)`;
   }, { passive: true });
+}
+
+const contactForm = document.querySelector('[data-contact-form]');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const name = String(formData.get('name') || '').trim();
+    const company = String(formData.get('company') || '').trim();
+    const phone = String(formData.get('phone') || '').trim();
+    const email = String(formData.get('email') || '').trim();
+    const message = String(formData.get('message') || '').trim();
+
+    const body = [
+      `Name: ${name || 'Not supplied'}`,
+      `Company: ${company || 'Not supplied'}`,
+      `Phone: ${phone || 'Not supplied'}`,
+      `Email: ${email || 'Not supplied'}`,
+      '',
+      message || 'No project details supplied.'
+    ].join('\n');
+
+    window.location.href = `mailto:info@barcosolutions.co.za?subject=${encodeURIComponent('Barco Solutions enquiry')}&body=${encodeURIComponent(body)}`;
+  });
 }
