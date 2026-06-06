@@ -46,8 +46,8 @@
       <div class="hero-inner">
         <div class="hero-copy reveal">
           <p class="eyebrow">Barco Solutions</p>
-          <h1 id="hero-title">Property care that looks sharp, runs clean, and gets handled properly.</h1>
-          <p class="lead">A premium rebuild of the live Barco Solutions story: property maintenance, cleaning, hygiene, repairs and facility support for homes, commercial sites and managed property environments.</p>
+          <h1 id="hero-title">Professional property care for clean, maintained and reliable spaces.</h1>
+          <p class="lead">A polished version of the live Barco Solutions site: maintenance, hygiene, cleaning, repairs and facility support for homes, commercial sites and managed property environments.</p>
           <div class="hero-actions">
             <a class="btn primary" href="#solutions">Explore solutions</a>
             <a class="btn secondary" href="#projects">View work</a>
@@ -271,6 +271,27 @@
   </footer>
 
   <script src="bot-config.js"></script>
+  <script>
+    window.SmartSiteBotConfig = Object.assign({}, window.SmartSiteBotConfig || {}, {
+      subtitle: 'Maintenance, hygiene and facility enquiries',
+      botSubtitle: 'Property care site assistant',
+      genericMessage: 'Hi Barco Solutions, I need help with a property maintenance, hygiene or facility support enquiry.',
+      quickReplies: [
+        'I need a quote',
+        'Maintenance services',
+        'Cleaning and hygiene',
+        'Commercial property',
+        'Residential property',
+        'Contact the team'
+      ],
+      sitePages: [
+        { label: 'Who we are', href: 'index.html#who' },
+        { label: 'Solutions', href: 'index.html#solutions' },
+        { label: 'Projects', href: 'index.html#projects' },
+        { label: 'Contact', href: 'index.html#contact' }
+      ]
+    });
+  </script>
   <script src="bot-widget.js"></script>
   <script src="site.js"></script>
 </body>
